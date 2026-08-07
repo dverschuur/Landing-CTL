@@ -4,10 +4,12 @@
  *  - Carrusel de casos de éxito.
  */
 import { mountCarousel } from '../components/carousel.js';
+import { mountStoryScroll } from '../components/storyScroll.js';
 
 const NUM_CANDLES = 30;
 
 let unmountCarousel = null;
+let unmountStoryScroll = null;
 
 function renderCandles(root) {
     const container = root.querySelector('#candlestick-container');
@@ -40,9 +42,12 @@ function renderCandles(root) {
 export function init(root) {
     renderCandles(root);
     unmountCarousel = mountCarousel(root);
+    unmountStoryScroll = mountStoryScroll(root);
 }
 
 export function destroy() {
     if (unmountCarousel) unmountCarousel();
     unmountCarousel = null;
+    if (unmountStoryScroll) unmountStoryScroll();
+    unmountStoryScroll = null;
 }
