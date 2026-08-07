@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CTL - Corporación Trading Latinoamérica</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nova+Square&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-container": "#5d5f5f",
+                "surface-dim": "#dadada",
+                "tertiary-fixed": "#e2e2e2",
+                "on-error-container": "#93000a",
+                "on-surface-variant": "#5c403c",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e2e2e2",
+                "on-primary-container": "#ffcdc6",
+                "on-tertiary": "#ffffff",
+                "primary-fixed": "#ffdad5",
+                "inverse-primary": "#ffb4aa",
+                "primary-container": "#bc1515",
+                "tertiary": "#464748",
+                "surface-variant": "#e2e2e2",
+                "on-error": "#ffffff",
+                "error-container": "#ffdad6",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#1a1c1c",
+                "on-tertiary-fixed-variant": "#454747",
+                "surface-container": "#eeeeee",
+                "outline-variant": "#e5bdb8",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#2f3131",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#ffb4aa",
+                "on-secondary-fixed": "#1b1b1b",
+                "surface": "#f9f9f9",
+                "secondary": "#5e5e5e",
+                "on-primary-fixed-variant": "#930007",
+                "primary": "#930007",
+                "secondary-container": "#e2e2e2",
+                "inverse-on-surface": "#f1f1f1",
+                "surface-bright": "#f9f9f9",
+                "on-secondary-container": "#646464",
+                "background": "#f9f9f9",
+                "on-tertiary-container": "#d9d9d9",
+                "secondary-fixed-dim": "#c6c6c6",
+                "surface-container-high": "#e8e8e8",
+                "on-surface": "#1a1c1c",
+                "on-secondary-fixed-variant": "#474747",
+                "outline": "#906f6b",
+                "on-primary-fixed": "#410001",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "secondary-fixed": "#e2e2e2",
+                "on-background": "#1a1c1c",
+                "surface-container-low": "#f4f3f3",
+                "surface-tint": "#bc1515",
+                "page": "#d6d6d6"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "sm": "8px",
+                "base": "8px",
+                "xl": "48px",
+                "md": "16px",
+                "xs": "4px",
+                "lg": "24px"
+        },
+        "fontFamily": {
+                "headline-lg": ["Nova Square"],
+                "body-lg": ["Poppins"],
+                "headline-md": ["Nova Square"],
+                "label-md": ["Poppins"]
+        },
+        "fontSize": {
+                "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.5px", "fontWeight": "600" }]
+        }
+},
+    },
+  }
+</script>
+<style>
+    .nav-transition {
+        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav-hidden {
+        transform: translateY(-120%);
+    }
+    /* Transición de montaje de vistas del router */
+    #app-content {
+        transition: opacity 0.2s ease;
+    }
+    /* Compliance carousel */
+    .compliance-track {
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .compliance-track::-webkit-scrollbar { display: none; }
+    .compliance-card { scroll-snap-align: start; }
+    /* Candlestick Animation Setup */
+    @keyframes driftUp {
+        0% { transform: translateY(100vh); opacity: 0; }
+        10% { opacity: 0.8; }
+        90% { opacity: 0.8; }
+        100% { transform: translateY(-100vh); opacity: 0; }
+    }
+    @keyframes driftDown {
+        0% { transform: translateY(-100vh); opacity: 0; }
+        10% { opacity: 0.8; }
+        90% { opacity: 0.8; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .candlestick {
+        position: absolute;
+        width: 12px;
+        z-index: 0;
+        border-radius: 2px;
+    }
+    .candlestick::before, .candlestick::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        background-color: inherit;
+    }
+    .candlestick::before { bottom: 100%; height: 20px; }
+    .candlestick::after { top: 100%; height: 20px; }
+
+    .candle-green { background-color: #25D366; animation: driftUp linear infinite; }
+    .candle-red { background-color: #930007; animation: driftDown linear infinite; }
+</style>
+</head>
+<body class="bg-page text-on-background font-body-lg text-body-lg min-h-screen">
+
+<!-- ===================== APP SHELL ===================== -->
+<div class="w-full bg-white min-h-screen flex flex-col">
+
+<!-- TopNavBar (persistente) -->
+<nav class="sticky top-0 z-50 nav-transition bg-transparent flex justify-between items-center px-lg md:px-xl h-[72px] -mb-[72px] w-full" id="mainNav">
+<a class="font-headline-lg text-[26px] text-primary cursor-pointer tracking-wide" href="#/home">CTL</a>
+<div class="hidden md:flex items-center gap-lg font-body-lg text-[13px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home">Home</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/about">Quiénes somos</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/services">Services</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/projects">Projects</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="font-label-md text-[12px] text-primary hover:opacity-70 transition-opacity" id="langToggle">ENG-ESP</button>
+<a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact">Contact</a>
+</div>
+</nav>
+
+<!-- Outlet: aquí el router inyecta cada vista -->
+<main class="flex-grow" id="app-content"></main>
+
+<!-- Footer (persistente) -->
+<footer class="bg-black text-surface-container-low font-body-lg w-full border-t-4 border-primary mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md px-lg md:px-xl py-lg max-w-[1440px] mx-auto">
+<div>
+<div class="font-headline-lg text-white text-[13px] mb-xs">CTL</div>
+<p class="text-surface-dim text-[10px]">Industrial Grade Solutions.</p>
+</div>
+<div>
+<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider">Directives</h4>
+<ul class="space-y-xs text-[12px]">
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider">Framework</h4>
+<ul class="space-y-xs text-[12px]">
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Compliance Norms</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+<div class="text-right md:col-span-3 mt-md pt-sm border-t border-tertiary text-[9px] text-surface-dim">
+    © 2024 Corporación Trading Latinoamérica (CTL). RIF: J-12345678-9. All rights reserved.
+</div>
+</div>
+</footer>
+
+</div><!-- /shell -->
+
+<!-- BottomNavBar (FAB WhatsApp, persistente) -->
+<div class="fixed bottom-8 right-8 z-50 flex items-center justify-center">
+<a class="bg-[#25D366] text-white rounded-full h-12 w-12 flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-primary/50 animate-bounce transition-all duration-500" href="#" aria-label="WhatsApp">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</a>
+</div>
+
+<!-- Router (ES module: habilita import() dinámico por vista) -->
+<script src="js/router.js" type="module"></script>
+</body></html>
