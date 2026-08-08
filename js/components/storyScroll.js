@@ -58,12 +58,22 @@ export function mountStoryScroll(root, { section: sectionSel = '#story-section' 
         });
     };
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            update();
+            ticking = false;
+        });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     update();
 
     return () => {
-        window.removeEventListener('scroll', update);
-        window.removeEventListener('resize', update);
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
     };
 }

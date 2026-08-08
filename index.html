@@ -92,6 +92,9 @@
   }
 </script>
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
     .nav-transition {
         transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -143,6 +146,34 @@
 
     .candle-green { background-color: #25D366; animation: driftUp linear infinite; }
     .candle-red { background-color: #930007; animation: driftDown linear infinite; }
+
+    /* Marquee de imágenes en movimiento continuo */
+    @keyframes marqueeScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+    .marquee-track {
+        animation: marqueeScroll 45s linear infinite;
+    }
+
+    /* Scroll reveal: fade-up al entrar en pantalla.
+       Oculto SOLO si JS confirma "reveal-pending" (progressive enhancement:
+       si el script no llega a correr, el texto queda visible por defecto). */
+    .reveal-up {
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-up.reveal-pending {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    .reveal-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .story-slide {
+        will-change: opacity, transform;
+    }
 </style>
 </head>
 <body class="bg-page text-on-background font-body-lg text-body-lg min-h-screen">
