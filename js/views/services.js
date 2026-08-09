@@ -4,8 +4,10 @@
  *  - Accordion con comportamiento exclusivo (solo uno abierto).
  */
 import { mountCarousel } from '../components/carousel.js';
+import { mountScrollReveal } from '../components/scrollReveal.js';
 
 let unmountCarousel = null;
+let unmountReveal = null;
 
 // -----------------------------------------------------------------------
 // Accordion
@@ -84,6 +86,9 @@ export function init(root) {
         btn.addEventListener('click', handleAccordionClick);
     });
 
+    // Scroll reveal (fade-up)
+    unmountReveal = mountScrollReveal(root);
+
     // "View Details" links
     root.querySelectorAll('a[href^="#svc-accordion-"]').forEach((link) => {
         link.addEventListener('click', handleDetailLink);
@@ -93,4 +98,6 @@ export function init(root) {
 export function destroy() {
     if (unmountCarousel) unmountCarousel();
     unmountCarousel = null;
+    if (unmountReveal) unmountReveal();
+    unmountReveal = null;
 }
