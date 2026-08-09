@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_61 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_61" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_61');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(20, 15, 20);
+camera.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+const blueprintGroup = new THREE.Group();
+scene.add(blueprintGroup);
+
+// Materials
+const lineMaterial = new THREE.LineBasicMaterial({ color: 0xbc1515, transparent: true, opacity: 0.6 });
+const structureMaterial = new THREE.MeshPhongMaterial({ 
+    color: 0x999999, 
+    wireframe: true, 
+    transparent: true, 
+    opacity: 0.3 
+});
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7);
+scene.add(directionalLight);
+
+// Helper to create "building" structures
+function createIndustrialPiece(x, y, z, w, h, d, delay) {
+    const geo = new THREE.BoxGeometry(w, h, d);
+    const mesh = new THREE.Mesh(geo, structureMaterial);
+    mesh.position.set(x, y + h/2, z);
+    mesh.scale.set(0.01, 0.01, 0.01);
+    blueprintGroup.add(mesh);
+
+    const edges = new THREE.EdgesGeometry(geo);
+    const line = new THREE.LineSegments(edges, lineMaterial);
+    line.position.copy(mesh.position);
+    line.scale.set(0.01, 0.01, 0.01);
+    blueprintGroup.add(line);
+
+    return { mesh, line, targetScale: 1, delay, currentScale: 0 };
+}
+
+const structures = [];
+// Create a basic refinery layout
+for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+        if (Math.random() > 0.6) {
+            const h = Math.random() * 5 + 2;
+            structures.push(createIndustrialPiece(i * 3 - 10, 0, j * 3 - 10, 2, h, 2, Math.random() * 2));
+        }
+    }
+}
+
+// Pipes
+const pipeGeo = new THREE.CylinderGeometry(0.2, 0.2, 20, 8);
+const pipe = new THREE.Mesh(pipeGeo, structureMaterial);
+pipe.rotation.z = Math.PI / 2;
+pipe.position.y = 2;
+blueprintGroup.add(pipe);
+
+let time = 0;
+function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+
+    structures.forEach(s => {
+        if (time > s.delay) {
+            s.currentScale = Math.min(s.targetScale, s.currentScale + 0.02);
+            s.mesh.scale.set(s.currentScale, s.currentScale, s.currentScale);
+            s.line.scale.set(s.currentScale, s.currentScale, s.currentScale);
+        }
+    });
+
+    blueprintGroup.rotation.y += 0.002;
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+
+animate();
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_61 -->
+</body>
+</html>
