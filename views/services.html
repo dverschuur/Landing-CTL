@@ -1,6 +1,305 @@
-<!-- VIEW: SERVICES — pendiente de contenido -->
-<section class="bg-white min-h-screen flex items-center justify-center py-xl" id="services">
-<div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl">
-<h1 class="font-headline-lg text-[40px] md:text-[64px] uppercase tracking-tight">Services</h1>
-</div>
+<!-- VIEW: SERVICES — Slider de servicios + Accordion expandible -->
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 1: Full-Screen Service Card Slider
+     ═══════════════════════════════════════════════ -->
+<section class="bg-white min-h-screen relative" id="services-slider">
+  <div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl pt-[calc(72px+32px)] pb-xl">
+
+    <!-- Section Header -->
+    <div class="flex items-end justify-between mb-xl">
+      <div>
+        <h1 class="font-headline-lg text-[40px] md:text-[56px] leading-[1.05] uppercase tracking-tight">
+          Nuestros Servicios<br/>
+        </h1>
+      </div>
+      <!-- Slider Navigation -->
+      <div class="flex items-center gap-md shrink-0">
+        <button type="button" id="servicesPrev" aria-label="Anterior" class="h-11 w-11 rounded-full border border-on-surface/30 text-on-surface flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary disabled:opacity-30 disabled:pointer-events-none">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+        <button type="button" id="servicesNext" aria-label="Siguiente" class="h-11 w-11 rounded-full border border-on-surface/30 text-on-surface flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary disabled:opacity-30 disabled:pointer-events-none">
+          <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Card Track -->
+    <div class="compliance-track flex gap-lg overflow-x-auto pb-md" id="servicesTrack">
+
+      <!-- CARD 1: Engineering Design -->
+      <a
+        href="#svc-accordion-1"
+        class="compliance-card shrink-0 w-[85%] sm:w-[60%] lg:w-[380px] h-[420px] rounded-2xl border border-surface-dim overflow-hidden group relative block"
+        aria-label="Engineering Design — Ver detalles"
+      >
+        <div
+          class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+          style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyZpQ2w0hhqIAUrPrAMJx3-mGv_oeVT_ywe9HcAmuYLIlhQtVMZh155hSAEg3jDilMJWJ0wpMt0AeP7PrOIV0bWbVBOSKpQhP9FPWMb-TCrttwFdytYW2JIj1KWgnJAubeZNvINIQOM-zRzUiT-GhchXk7QXeH06X2JYYR4HIELUyNIP2yAAaOj8oAqUHnQT_iaoT704rht1754ofU7Uaz1Doj3yWjWukJZ8pjNU-cbl8W06z1Svwd')"
+          aria-hidden="true"
+        ></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+        <span class="absolute top-md left-md font-label-md text-[10px] uppercase tracking-[0.2em] bg-primary text-on-primary px-sm py-xs rounded-lg z-10">
+          EPC Core
+        </span>
+        <div class="absolute bottom-lg left-lg right-lg z-10 flex flex-col gap-xs">
+          <span class="self-start inline-flex items-center gap-xs font-label-md text-[11px] uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+            View Details
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+          </span>
+          <h3 class="font-headline-md text-[24px] text-white">Engineering Design</h3>
+        </div>
+      </a>
+
+      <!-- CARD 2: Strategic Procurement -->
+      <a
+        href="#svc-accordion-2"
+        class="compliance-card shrink-0 w-[85%] sm:w-[60%] lg:w-[380px] h-[420px] rounded-2xl border border-surface-dim overflow-hidden group relative block"
+        aria-label="Strategic Procurement — Ver detalles"
+      >
+        <div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[120px] text-primary/20 transition-transform duration-500 group-hover:scale-110">local_shipping</span>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+        <span class="absolute top-md left-md font-label-md text-[10px] uppercase tracking-[0.2em] bg-primary text-on-primary px-sm py-xs rounded-lg z-10">
+          EPC Core
+        </span>
+        <div class="absolute bottom-lg left-lg right-lg z-10 flex flex-col gap-xs">
+          <span class="self-start inline-flex items-center gap-xs font-label-md text-[11px] uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+            View Details
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+          </span>
+          <h3 class="font-headline-md text-[24px] text-white">Strategic Procurement</h3>
+        </div>
+      </a>
+
+      <!-- CARD 3: Heavy Construction -->
+      <a
+        href="#svc-accordion-3"
+        class="compliance-card shrink-0 w-[85%] sm:w-[60%] lg:w-[380px] h-[420px] rounded-2xl border border-surface-dim overflow-hidden group relative block"
+        aria-label="Heavy Construction — Ver detalles"
+      >
+        <div class="absolute inset-0 bg-on-surface/5 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[120px] text-primary/20 transition-transform duration-500 group-hover:scale-110">construction</span>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+        <span class="absolute top-md left-md font-label-md text-[10px] uppercase tracking-[0.2em] bg-primary text-on-primary px-sm py-xs rounded-lg z-10">
+          EPC Core
+        </span>
+        <div class="absolute bottom-lg left-lg right-lg z-10 flex flex-col gap-xs">
+          <span class="self-start inline-flex items-center gap-xs font-label-md text-[11px] uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+            View Details
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+          </span>
+          <h3 class="font-headline-md text-[24px] text-white">Heavy Construction</h3>
+        </div>
+      </a>
+
+      <!-- CARD 4: Chemical Treatments -->
+      <a
+        href="#svc-accordion-4"
+        class="compliance-card shrink-0 w-[85%] sm:w-[60%] lg:w-[380px] h-[420px] rounded-2xl border border-surface-dim overflow-hidden group relative block"
+        aria-label="Chemical Treatments — Ver detalles"
+      >
+        <div class="absolute inset-0 bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[120px] text-on-primary/20 transition-transform duration-500 group-hover:scale-110">science</span>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
+        <span class="absolute top-md left-md font-label-md text-[10px] uppercase tracking-[0.2em] bg-white text-primary px-sm py-xs rounded-lg z-10">
+          Specialized
+        </span>
+        <div class="absolute bottom-lg left-lg right-lg z-10 flex flex-col gap-xs">
+          <span class="self-start inline-flex items-center gap-xs font-label-md text-[11px] uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+            View Details
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+          </span>
+          <h3 class="font-headline-md text-[24px] text-white">Chemical Treatments</h3>
+        </div>
+      </a>
+
+      <!-- CARD 5: Cooling Systems -->
+      <a
+        href="#svc-accordion-5"
+        class="compliance-card shrink-0 w-[85%] sm:w-[60%] lg:w-[380px] h-[420px] rounded-2xl border border-surface-dim overflow-hidden group relative block"
+        aria-label="Cooling Systems — Ver detalles"
+      >
+        <div class="absolute inset-0 bg-on-surface/5 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[120px] text-primary/20 transition-transform duration-500 group-hover:scale-110">ac_unit</span>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+        <span class="absolute top-md left-md font-label-md text-[10px] uppercase tracking-[0.2em] bg-primary text-on-primary px-sm py-xs rounded-lg z-10">
+          Specialized
+        </span>
+        <div class="absolute bottom-lg left-lg right-lg z-10 flex flex-col gap-xs">
+          <span class="self-start inline-flex items-center gap-xs font-label-md text-[11px] uppercase tracking-[0.2em] text-white/60 group-hover:text-white transition-colors">
+            View Details
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+          </span>
+          <h3 class="font-headline-md text-[24px] text-white">Cooling Systems</h3>
+        </div>
+      </a>
+
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 2: Expandable Accordion
+     ═══════════════════════════════════════════════ -->
+<section class="bg-surface min-h-screen py-xl" id="services-detail">
+  <div class="w-full max-w-[1280px] mx-auto px-lg md:px-xl">
+
+    <!-- Section Header -->
+    <div class="mb-xl">
+      <span class="inline-block font-label-md text-[11px] uppercase tracking-[0.25em] text-primary mb-md">
+        Our Capabilities
+      </span>
+      <h2 class="font-headline-lg text-[36px] md:text-[48px] leading-[1.1] uppercase tracking-tight">
+        What We<br/><span class="text-primary">Deliver.</span>
+      </h2>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="border-t border-surface-dim" id="services-accordion">
+
+      <!-- Item 01 -->
+      <div class="border-b border-surface-dim" id="svc-accordion-1">
+        <button
+          type="button"
+          class="svc-accordion-toggle w-full flex items-center gap-lg py-lg text-left group"
+          aria-expanded="false"
+          aria-controls="svc-panel-1"
+        >
+          <span class="shrink-0 w-10 h-10 rounded-full border-2 border-surface-dim flex items-center justify-center font-label-md text-[13px] text-on-surface/40 transition-all duration-300 group-aria-[expanded=true]:border-primary group-aria-[expanded=true]:text-primary group-aria-[expanded=true]:bg-primary/5">
+            01
+          </span>
+          <span class="flex-grow font-body-lg text-[17px] text-on-surface/50 transition-colors duration-300 group-aria-[expanded=true]:text-on-surface group-aria-[expanded=true]:font-semibold">
+            Engineering Design
+          </span>
+          <span class="material-symbols-outlined text-[24px] text-on-surface/30 transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:text-on-surface shrink-0">
+            add
+          </span>
+        </button>
+        <div id="svc-panel-1" class="svc-accordion-panel overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-in-out">
+          <div class="pl-[calc(2.5rem+24px)] pr-[calc(1.5rem+24px)] pb-lg">
+            <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 max-w-2xl">
+              Precision-driven architectural and structural engineering. We leverage advanced modeling to ensure unshakeable stability and compliance with international normative standards. Our team integrates cutting-edge CAD/BIM platforms with on-site expertise to deliver blueprints that bridge concept and construction seamlessly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 02 -->
+      <div class="border-b border-surface-dim" id="svc-accordion-2">
+        <button
+          type="button"
+          class="svc-accordion-toggle w-full flex items-center gap-lg py-lg text-left group"
+          aria-expanded="false"
+          aria-controls="svc-panel-2"
+        >
+          <span class="shrink-0 w-10 h-10 rounded-full border-2 border-surface-dim flex items-center justify-center font-label-md text-[13px] text-on-surface/40 transition-all duration-300 group-aria-[expanded=true]:border-primary group-aria-[expanded=true]:text-primary group-aria-[expanded=true]:bg-primary/5">
+            02
+          </span>
+          <span class="flex-grow font-body-lg text-[17px] text-on-surface/50 transition-colors duration-300 group-aria-[expanded=true]:text-on-surface group-aria-[expanded=true]:font-semibold">
+            Strategic Procurement
+          </span>
+          <span class="material-symbols-outlined text-[24px] text-on-surface/30 transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:text-on-surface shrink-0">
+            add
+          </span>
+        </button>
+        <div id="svc-panel-2" class="svc-accordion-panel overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-in-out">
+          <div class="pl-[calc(2.5rem+24px)] pr-[calc(1.5rem+24px)] pb-lg">
+            <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 max-w-2xl">
+              Global sourcing of high-grade industrial materials and equipment. Our supply chain operations prioritize efficiency, cost-control, and rapid deployment capabilities. We maintain strategic partnerships with certified international suppliers to guarantee quality, traceability, and compliance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 03 -->
+      <div class="border-b border-surface-dim" id="svc-accordion-3">
+        <button
+          type="button"
+          class="svc-accordion-toggle w-full flex items-center gap-lg py-lg text-left group"
+          aria-expanded="false"
+          aria-controls="svc-panel-3"
+        >
+          <span class="shrink-0 w-10 h-10 rounded-full border-2 border-surface-dim flex items-center justify-center font-label-md text-[13px] text-on-surface/40 transition-all duration-300 group-aria-[expanded=true]:border-primary group-aria-[expanded=true]:text-primary group-aria-[expanded=true]:bg-primary/5">
+            03
+          </span>
+          <span class="flex-grow font-body-lg text-[17px] text-on-surface/50 transition-colors duration-300 group-aria-[expanded=true]:text-on-surface group-aria-[expanded=true]:font-semibold">
+            Heavy Construction
+          </span>
+          <span class="material-symbols-outlined text-[24px] text-on-surface/30 transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:text-on-surface shrink-0">
+            add
+          </span>
+        </button>
+        <div id="svc-panel-3" class="svc-accordion-panel overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-in-out">
+          <div class="pl-[calc(2.5rem+24px)] pr-[calc(1.5rem+24px)] pb-lg">
+            <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 max-w-2xl">
+              Execution of complex industrial builds. We manage large-scale construction projects focusing on safety, structural integrity, and adherence to aggressive timelines. From heavy civil works to specialized installations, our execution teams deliver operational facilities on schedule.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 04 -->
+      <div class="border-b border-surface-dim" id="svc-accordion-4">
+        <button
+          type="button"
+          class="svc-accordion-toggle w-full flex items-center gap-lg py-lg text-left group"
+          aria-expanded="false"
+          aria-controls="svc-panel-4"
+        >
+          <span class="shrink-0 w-10 h-10 rounded-full border-2 border-surface-dim flex items-center justify-center font-label-md text-[13px] text-on-surface/40 transition-all duration-300 group-aria-[expanded=true]:border-primary group-aria-[expanded=true]:text-primary group-aria-[expanded=true]:bg-primary/5">
+            04
+          </span>
+          <span class="flex-grow font-body-lg text-[17px] text-on-surface/50 transition-colors duration-300 group-aria-[expanded=true]:text-on-surface group-aria-[expanded=true]:font-semibold">
+            Chemical Treatments
+          </span>
+          <span class="material-symbols-outlined text-[24px] text-on-surface/30 transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:text-on-surface shrink-0">
+            add
+          </span>
+        </button>
+        <div id="svc-panel-4" class="svc-accordion-panel overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-in-out">
+          <div class="pl-[calc(2.5rem+24px)] pr-[calc(1.5rem+24px)] pb-lg">
+            <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 max-w-2xl">
+              Advanced chemical conditioning for industrial water systems, pipelines, and specialized manufacturing processes. We provide customized formulations designed to prevent corrosion, scale, and biological fouling, ensuring longevity and efficiency of critical infrastructure components.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 05 -->
+      <div class="border-b border-surface-dim" id="svc-accordion-5">
+        <button
+          type="button"
+          class="svc-accordion-toggle w-full flex items-center gap-lg py-lg text-left group"
+          aria-expanded="false"
+          aria-controls="svc-panel-5"
+        >
+          <span class="shrink-0 w-10 h-10 rounded-full border-2 border-surface-dim flex items-center justify-center font-label-md text-[13px] text-on-surface/40 transition-all duration-300 group-aria-[expanded=true]:border-primary group-aria-[expanded=true]:text-primary group-aria-[expanded=true]:bg-primary/5">
+            05
+          </span>
+          <span class="flex-grow font-body-lg text-[17px] text-on-surface/50 transition-colors duration-300 group-aria-[expanded=true]:text-on-surface group-aria-[expanded=true]:font-semibold">
+            Cooling Systems
+          </span>
+          <span class="material-symbols-outlined text-[24px] text-on-surface/30 transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:text-on-surface shrink-0">
+            add
+          </span>
+        </button>
+        <div id="svc-panel-5" class="svc-accordion-panel overflow-hidden max-h-0 opacity-0 transition-all duration-400 ease-in-out">
+          <div class="pl-[calc(2.5rem+24px)] pr-[calc(1.5rem+24px)] pb-lg">
+            <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 max-w-2xl">
+              Design, installation, and optimization of heavy-duty industrial cooling towers and chiller systems. Built for continuous operation under extreme thermal loads, our solutions integrate real-time monitoring and predictive maintenance protocols.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /Accordion -->
+
+  </div>
 </section>

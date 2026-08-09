@@ -17,7 +17,7 @@ import { applyLang } from './i18n.js';
 const routes = {
     '/home':     { view: 'views/home.html',      module: './views/home.js',     title: 'CTL - Inicio' },
     '/about':    { view: 'views/about.html',     module: './views/about.js',    title: 'CTL - Quiénes somos' },
-    '/services': { view: 'views/services.html',  module: null,                  title: 'CTL - Servicios' },
+    '/services': { view: 'views/services.html',  module: './views/services.js', title: 'CTL - Servicios' },
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
     '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
     '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
