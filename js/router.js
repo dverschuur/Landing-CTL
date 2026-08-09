@@ -9,6 +9,7 @@
  *     ya que innerHTML no ejecuta <script>.
  *  5. Sincronizar el estado "activo" de la barra de navegación global.
  */
+import { applyLang } from './i18n.js';
 
 // ---------------------------------------------------------------------------
 // Tabla de rutas
@@ -18,6 +19,7 @@ const routes = {
     '/about':    { view: 'views/about.html',     module: './views/about.js',    title: 'CTL - Quiénes somos' },
     '/services': { view: 'views/services.html',  module: null,                  title: 'CTL - Servicios' },
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
+    '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
     '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
 };
 
@@ -29,7 +31,7 @@ const DEFAULT_ROUTE = '/home';
 // ---------------------------------------------------------------------------
 export const appState = {
     currentPath: null,
-    lang: localStorage.getItem('ctl-lang') || 'ESP',
+    lang: localStorage.getItem('ctl-lang') || 'ES',
     isLoading: false,
 };
 
@@ -151,17 +153,15 @@ function initShell() {
         }, { passive: true });
     }
 
-    // Toggle de idioma (estado global persistente).
+    // Toggle de idioma (estado global persistente): traduce nav + footer.
     const langToggle = document.getElementById('langToggle');
+    applyLang(appState.lang);
     if (langToggle) {
-        const paint = () => { langToggle.textContent = appState.lang === 'ESP' ? 'ENG-ESP' : 'ESP-ENG'; };
         langToggle.addEventListener('click', () => {
-            appState.lang = appState.lang === 'ESP' ? 'ENG' : 'ESP';
+            appState.lang = appState.lang === 'ES' ? 'EN' : 'ES';
             localStorage.setItem('ctl-lang', appState.lang);
-            document.documentElement.lang = appState.lang === 'ESP' ? 'es' : 'en';
-            paint();
+            applyLang(appState.lang);
         });
-        paint();
     }
 }
 
