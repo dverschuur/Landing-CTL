@@ -61,7 +61,8 @@ async function fetchView(url) {
 }
 
 function setActiveNav(path) {
-    document.querySelectorAll('#mainNav .nav-item').forEach((link) => {
+    // Selector global (no solo #mainNav): también cubre los links del menú móvil.
+    document.querySelectorAll('.nav-item').forEach((link) => {
         const target = (link.getAttribute('href') || '').replace(/^#/, '');
         const isActive = target === path;
 
@@ -162,6 +163,35 @@ function initShell() {
             localStorage.setItem('ctl-lang', appState.lang);
             applyLang(appState.lang);
         });
+    }
+
+    // Menú móvil (hamburguesa): solo visible por debajo del breakpoint md.
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileIcon = document.getElementById('mobileMenuIcon');
+    if (mobileToggle && mobileMenu) {
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            if (mobileIcon) mobileIcon.textContent = 'menu';
+            document.body.classList.remove('overflow-hidden');
+        };
+        const openMobileMenu = () => {
+            mobileMenu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            if (mobileIcon) mobileIcon.textContent = 'close';
+            document.body.classList.add('overflow-hidden');
+        };
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
+            if (isOpen) closeMobileMenu(); else openMobileMenu();
+        });
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        window.addEventListener('hashchange', closeMobileMenu);
     }
 }
 

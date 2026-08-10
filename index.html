@@ -151,7 +151,12 @@
 
 <!-- TopNavBar (persistente) -->
 <nav class="sticky top-0 z-50 nav-transition bg-transparent flex justify-between items-center px-lg md:px-xl h-[72px] -mb-[72px] w-full" id="mainNav">
+<div class="flex items-center gap-md">
+<button class="md:hidden flex items-center justify-center h-10 w-10 rounded-xl border border-on-surface/20 text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" id="mobileMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+<span class="material-symbols-outlined text-[22px]" id="mobileMenuIcon">menu</span>
+</button>
 <a class="font-headline-lg text-[26px] text-primary cursor-pointer tracking-wide" href="#/home">CTL</a>
+</div>
 <div class="hidden md:flex items-center gap-lg font-body-lg text-[13px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 <a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home" data-i18n="nav.home">Inicio</a>
 <a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/about" data-i18n="nav.about">Quiénes somos</a>
@@ -165,6 +170,17 @@
 <a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact" data-i18n="nav.contact">Contact</a>
 </div>
 </nav>
+
+<!-- Menú móvil (overlay a pantalla completa, con transición suave) -->
+<div class="md:hidden fixed inset-0 z-40 flex flex-col bg-white opacity-0 scale-95 pointer-events-none transition-all duration-300 ease-out" id="mobileMenu">
+<div class="flex-1 flex flex-col items-center justify-center gap-xl px-lg">
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/home" data-i18n="nav.home">Inicio</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/about" data-i18n="nav.about">Quiénes somos</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/services" data-i18n="nav.services">Services</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
+<a class="font-label-md text-[13px] uppercase tracking-widest bg-primary text-on-primary px-xl py-md rounded-lg mt-md" href="#/contact" data-i18n="nav.contact">Contact</a>
+</div>
+</div>
 
 <!-- Outlet: aquí el router inyecta cada vista -->
 <main class="flex-grow" id="app-content"></main>
