@@ -20,6 +20,7 @@ const routes = {
     '/about':    { view: 'views/about.html',     module: './views/about.js',    title: 'CTL - Quiénes somos' },
     '/services': { view: 'views/services.html',  module: './views/services.js', title: 'CTL - Servicios' },
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
+    '/proyectos': { view: 'views/proyectos.html', module: null,                  title: 'CTL - Proyectos Emblemáticos' },
     '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
     '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
 };
@@ -120,7 +121,19 @@ async function render(path) {
         appState.currentPath = path;
         setActiveNav(path);
         syncHeroSlider(path);
-        window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+        // El salto de ruta debe ser instantáneo: se desactiva momentáneamente el
+        // "scroll-behavior: smooth" global (CSS) para que no lo anime. La
+        // restauración se difiere (setTimeout) para no pisar el salto antes de
+        // que el navegador lo aplique.
+        const scrollTarget = route.scrollTo && document.getElementById(route.scrollTo);
+        const prevScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        if (scrollTarget) scrollTarget.scrollIntoView({ block: 'start' });
+        else window.scrollTo(0, 0);
+        setTimeout(() => {
+            document.documentElement.style.scrollBehavior = prevScrollBehavior;
+        }, 0);
     } catch (err) {
         if (token !== navToken) return;
         console.error('[router]', err);

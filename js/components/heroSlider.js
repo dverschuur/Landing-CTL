@@ -1,6 +1,6 @@
 /**
  * Componente: Hero Slider global y persistente (App Shell).
- * Un slide por ruta principal (Home, About, Services, Compliance).
+ * Un slide por ruta principal (Home, About, Services, Proyectos, Compliance).
  * Deslizar (drag/swipe), las flechas o los puntos navegan la SPA real
  * (llaman a router.navigate). También se sincroniza en sentido inverso:
  * si la ruta cambia por otro medio (nav, atrás/adelante del navegador),
@@ -8,7 +8,7 @@
  */
 import { mountBlueprintScene } from './blueprintScene.js';
 
-const ROUTES = ['/home', '/about', '/services', '/compliance'];
+const ROUTES = ['/home', '/about', '/services', '/proyectos', '/compliance'];
 const DRAG_THRESHOLD_RATIO = 0.15;
 
 let section = null;
