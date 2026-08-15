@@ -1,38 +1,22 @@
 /**
- * Vista: Home (landing completa: hero + servicios + proyectos)
- *  - Fondo animado 3D "blueprint industrial" (Three.js) en el hero.
- *  - Carrusel de casos de éxito.
+ * Vista: Home (contenido debajo del hero global: servicios + estándares)
+ *  - El hero (fondo 3D "blueprint") ahora vive en el App Shell (heroSlider.js),
+ *    persistente entre rutas, así que esta vista solo monta lo que le queda.
  */
 import { mountCarousel } from '../components/carousel.js';
 import { mountStoryScroll } from '../components/storyScroll.js';
-import { mountBlueprintScene } from '../components/blueprintScene.js';
 
 let unmountCarousel = null;
 let unmountStoryScroll = null;
-let unmountBlueprint = null;
-let destroyed = false;
 
 export function init(root) {
-    destroyed = false;
     unmountCarousel = mountCarousel(root);
     unmountStoryScroll = mountStoryScroll(root);
-
-    const blueprintContainer = root.querySelector('#blueprint-container');
-    if (blueprintContainer) {
-        mountBlueprintScene(blueprintContainer).then((unmount) => {
-            // La vista pudo desmontarse mientras three.js cargaba de forma asíncrona.
-            if (destroyed) { unmount(); return; }
-            unmountBlueprint = unmount;
-        });
-    }
 }
 
 export function destroy() {
-    destroyed = true;
     if (unmountCarousel) unmountCarousel();
     unmountCarousel = null;
     if (unmountStoryScroll) unmountStoryScroll();
     unmountStoryScroll = null;
-    if (unmountBlueprint) unmountBlueprint();
-    unmountBlueprint = null;
 }

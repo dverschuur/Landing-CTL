@@ -10,6 +10,7 @@
  *  5. Sincronizar el estado "activo" de la barra de navegación global.
  */
 import { applyLang } from './i18n.js';
+import { mountHeroSlider, syncHeroSlider } from './components/heroSlider.js';
 
 // ---------------------------------------------------------------------------
 // Tabla de rutas
@@ -118,6 +119,7 @@ async function render(path) {
         document.title = route.title;
         appState.currentPath = path;
         setActiveNav(path);
+        syncHeroSlider(path);
         window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     } catch (err) {
         if (token !== navToken) return;
@@ -138,6 +140,9 @@ async function render(path) {
 // Chrome global (header, idioma) — vive fuera del ciclo de vida de las vistas
 // ---------------------------------------------------------------------------
 function initShell() {
+    // Hero Slider global: navega la SPA real al deslizar/usar flechas o puntos.
+    mountHeroSlider({ navigate });
+
     // Smart header: se oculta al bajar, reaparece al subir.
     const nav = document.getElementById('mainNav');
     if (nav) {
