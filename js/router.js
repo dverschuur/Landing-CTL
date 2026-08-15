@@ -20,7 +20,7 @@ const routes = {
     '/about':    { view: 'views/about.html',     module: './views/about.js',    title: 'CTL - Quiénes somos' },
     '/services': { view: 'views/services.html',  module: './views/services.js', title: 'CTL - Servicios' },
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
-    '/proyectos': { view: 'views/proyectos.html', module: null,                  title: 'CTL - Proyectos Emblemáticos' },
+    '/proyectos': { view: 'views/proyectos.html', module: './views/proyectos.js', title: 'CTL - Proyectos Emblemáticos' },
     '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
     '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
 };
