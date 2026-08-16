@@ -6,10 +6,10 @@
  * scroll y fade-out/up al salir.
  */
 
-const FADE = 0.25; // fracción del tramo de cada slide dedicada a entrar/salir
+const DEFAULT_FADE = 0.25; // fracción del tramo de cada slide dedicada a entrar/salir
 const OFFSET_PX = 32; // desplazamiento vertical del fade-up
 
-export function mountStoryScroll(root, { section: sectionSel = '#story-section' } = {}) {
+export function mountStoryScroll(root, { section: sectionSel = '#story-section', fade: FADE = DEFAULT_FADE } = {}) {
     const section = root.querySelector(sectionSel);
     if (!section) return () => {};
 

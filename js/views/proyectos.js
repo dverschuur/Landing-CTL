@@ -2,10 +2,13 @@
  * Vista: Proyectos
  *  - Fade-up al hacer scroll sobre los títulos de sección.
  *  - Selector de años (línea de tiempo) que filtra las tarjetas del historial.
+ *  - Cifras clave: scroll fijo con crossfade (mismo componente que el CTA de Inicio).
  */
 import { mountScrollReveal } from '../components/scrollReveal.js';
+import { mountStoryScroll } from '../components/storyScroll.js';
 
 let unmountReveal = null;
+let unmountStoryScroll = null;
 let yearButtons = [];
 let cards = [];
 
@@ -36,6 +39,7 @@ function onYearClick(e) {
 
 export function init(root) {
     unmountReveal = mountScrollReveal(root);
+    unmountStoryScroll = mountStoryScroll(root, { section: '#proyectos-stats-section', fade: 0.08 });
 
     yearButtons = Array.from(root.querySelectorAll('.proyecto-year-btn'));
     cards = Array.from(root.querySelectorAll('.proyecto-year-card'));
@@ -52,6 +56,8 @@ export function init(root) {
 export function destroy() {
     if (unmountReveal) unmountReveal();
     unmountReveal = null;
+    if (unmountStoryScroll) unmountStoryScroll();
+    unmountStoryScroll = null;
     yearButtons.forEach((btn) => btn.removeEventListener('click', onYearClick));
     yearButtons = [];
     cards = [];
