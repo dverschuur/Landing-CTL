@@ -22,7 +22,7 @@ const routes = {
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
     '/proyectos': { view: 'views/proyectos.html', module: './views/proyectos.js', title: 'CTL - Proyectos Emblemáticos' },
     '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
-    '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
+    '/contact':  { view: 'views/contact.html',   module: './views/contact.js',  title: 'CTL - Contacto' },
 };
 
 const NOT_FOUND = { view: 'views/not-found.html', module: null, title: 'CTL - 404' };
