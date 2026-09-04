@@ -6,6 +6,12 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Nova+Square&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<!-- Favicons: cross-browser + iOS + Android -->
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -168,7 +174,7 @@
 <button class="md:hidden flex items-center justify-center h-10 w-10 rounded-xl border border-on-surface/20 text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" id="mobileMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
 <span class="material-symbols-outlined text-[22px]" id="mobileMenuIcon">menu</span>
 </button>
-<a class="font-headline-lg text-[26px] text-primary cursor-pointer tracking-wide" href="#/home">CTL</a>
+<a class="cursor-pointer" href="#/home"><img src="img/original_4x.png" alt="CTL - Corporación Trading Latinoamérica" class="h-10 w-auto object-contain"/></a>
 </div>
 <div class="hidden md:flex items-center gap-lg font-body-lg text-[13px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 <a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home" data-i18n="nav.home">Inicio</a>
@@ -299,8 +305,8 @@
 
 <!-- BottomNavBar (FAB WhatsApp, persistente) -->
 <div class="fixed bottom-8 right-8 z-50 flex items-center justify-center">
-<a class="bg-[#25D366] text-white rounded-full h-12 w-12 flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-primary/50 animate-bounce transition-all duration-500" href="#" aria-label="WhatsApp">
-<span class="material-symbols-outlined text-[24px]">chat</span>
+<a class="hover:scale-110 animate-bounce transition-all duration-500 drop-shadow-2xl" href="#" aria-label="WhatsApp">
+<img src="img/WhatsApp.svg" alt="WhatsApp" class="h-14 w-14 object-contain"/>
 </a>
 </div>
 
