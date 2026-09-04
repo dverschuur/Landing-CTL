@@ -1,6 +1,6 @@
 /**
  * Vista: Home (contenido debajo del hero global: servicios + estándares)
- *  - El hero (fondo 3D "blueprint") ahora vive en el App Shell (heroSlider.js),
+ *  - El hero (fondo 3D "globo/mapa" giratorio) ahora vive en el App Shell (heroSlider.js),
  *    persistente entre rutas, así que esta vista solo monta lo que le queda.
  */
 import { mountCarousel } from '../components/carousel.js';

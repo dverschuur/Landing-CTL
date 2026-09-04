@@ -6,8 +6,6 @@
  * si la ruta cambia por otro medio (nav, atrás/adelante del navegador),
  * el slider se re-posiciona sin volver a disparar una navegación (evita loops).
  */
-import { mountBlueprintScene } from './blueprintScene.js';
-
 const ROUTES = ['/home', '/about', '/services', '/proyectos', '/compliance'];
 const DRAG_THRESHOLD_RATIO = 0.15;
 
@@ -17,6 +15,7 @@ let slides = [];
 let dots = [];
 let prevBtn = null;
 let nextBtn = null;
+let scrollHintBtn = null;
 let navigateFn = () => {};
 let currentIndex = 0;
 let sectionWidth = 0;
@@ -94,6 +93,7 @@ export function mountHeroSlider({ navigate } = {}) {
     dots = Array.from(document.querySelectorAll('#heroDots .hero-dot'));
     prevBtn = document.getElementById('heroPrev');
     nextBtn = document.getElementById('heroNext');
+    scrollHintBtn = document.getElementById('heroScrollHint');
     navigateFn = typeof navigate === 'function' ? navigate : () => {};
 
     sectionWidth = section.clientWidth;
@@ -104,16 +104,17 @@ export function mountHeroSlider({ navigate } = {}) {
     nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
+    // Señalización de scroll: baja hasta el contenido de la vista actual.
+    scrollHintBtn?.addEventListener('click', () => {
+        document.getElementById('app-content')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
     track.addEventListener('pointerdown', onPointerDown);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerup', onPointerUp);
     window.addEventListener('pointercancel', onPointerUp);
     window.addEventListener('resize', onResize);
 
-    // Fondo 3D del slide Home (Three.js): antes vivía en home.js, ahora se
-    // monta una sola vez porque el hero pasó a ser parte del shell persistente.
-    const blueprintContainer = document.getElementById('blueprint-container');
-    if (blueprintContainer) mountBlueprintScene(blueprintContainer);
 }
 
 /** Llamado por el router tras cada render(): re-posiciona el slider sin navegar. */
