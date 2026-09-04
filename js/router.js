@@ -109,6 +109,11 @@ async function render(path) {
 
         outlet.innerHTML = markup;
 
+        // El markup de las vistas está en español (fuente de verdad): se
+        // re-traduce en cada render. Va antes de mod.init() para que los
+        // listeners de la vista se enganchen al DOM ya definitivo.
+        applyLang(appState.lang);
+
         // innerHTML no ejecuta <script>: la lógica llega como módulo ES6.
         if (route.module) {
             const mod = await import(route.module);
@@ -172,7 +177,7 @@ function initShell() {
         }, { passive: true });
     }
 
-    // Toggle de idioma (estado global persistente): traduce nav + footer.
+    // Toggle de idioma (estado global persistente): traduce toda la página.
     const langToggle = document.getElementById('langToggle');
     applyLang(appState.lang);
     if (langToggle) {
