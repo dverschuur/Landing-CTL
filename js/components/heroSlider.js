@@ -15,6 +15,7 @@ let slides = [];
 let dots = [];
 let prevBtn = null;
 let nextBtn = null;
+let scrollHintBtn = null;
 let navigateFn = () => {};
 let currentIndex = 0;
 let sectionWidth = 0;
@@ -92,6 +93,7 @@ export function mountHeroSlider({ navigate } = {}) {
     dots = Array.from(document.querySelectorAll('#heroDots .hero-dot'));
     prevBtn = document.getElementById('heroPrev');
     nextBtn = document.getElementById('heroNext');
+    scrollHintBtn = document.getElementById('heroScrollHint');
     navigateFn = typeof navigate === 'function' ? navigate : () => {};
 
     sectionWidth = section.clientWidth;
@@ -101,6 +103,11 @@ export function mountHeroSlider({ navigate } = {}) {
     prevBtn?.addEventListener('click', () => goTo(currentIndex - 1));
     nextBtn?.addEventListener('click', () => goTo(currentIndex + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Señalización de scroll: baja hasta el contenido de la vista actual.
+    scrollHintBtn?.addEventListener('click', () => {
+        document.getElementById('app-content')?.scrollIntoView({ behavior: 'smooth' });
+    });
 
     track.addEventListener('pointerdown', onPointerDown);
     window.addEventListener('pointermove', onPointerMove);
