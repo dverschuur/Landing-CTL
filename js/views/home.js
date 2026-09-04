@@ -1,48 +1,22 @@
 /**
- * Vista: Home (landing completa: hero + servicios + proyectos)
- *  - Fondo animado de velas japonesas.
- *  - Carrusel de casos de éxito.
+ * Vista: Home (contenido debajo del hero global: servicios + estándares)
+ *  - El hero (fondo 3D "blueprint") ahora vive en el App Shell (heroSlider.js),
+ *    persistente entre rutas, así que esta vista solo monta lo que le queda.
  */
 import { mountCarousel } from '../components/carousel.js';
-
-const NUM_CANDLES = 30;
+import { mountStoryScroll } from '../components/storyScroll.js';
 
 let unmountCarousel = null;
-
-function renderCandles(root) {
-    const container = root.querySelector('#candlestick-container');
-    if (!container) return;
-
-    const frag = document.createDocumentFragment();
-
-    for (let i = 0; i < NUM_CANDLES; i++) {
-        const candle = document.createElement('div');
-        const isGreen = Math.random() > 0.5;
-        candle.classList.add('candlestick', isGreen ? 'candle-green' : 'candle-red');
-
-        // Randomize position, height, and animation duration
-        const left = Math.random() * 100;
-        const height = Math.random() * 100 + 40;   // 40px a 140px
-        const duration = Math.random() * 15 + 10;  // 10s a 25s
-        const delay = Math.random() * -20;         // delay negativo: arrancan ya en pantalla
-
-        candle.style.left = `${left}%`;
-        candle.style.height = `${height}px`;
-        candle.style.animationDuration = `${duration}s`;
-        candle.style.animationDelay = `${delay}s`;
-
-        frag.appendChild(candle);
-    }
-
-    container.appendChild(frag);
-}
+let unmountStoryScroll = null;
 
 export function init(root) {
-    renderCandles(root);
     unmountCarousel = mountCarousel(root);
+    unmountStoryScroll = mountStoryScroll(root);
 }
 
 export function destroy() {
     if (unmountCarousel) unmountCarousel();
     unmountCarousel = null;
+    if (unmountStoryScroll) unmountStoryScroll();
+    unmountStoryScroll = null;
 }

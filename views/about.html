@@ -1,6 +1,127 @@
-<!-- VIEW: ABOUT — pendiente de contenido -->
-<section class="bg-white min-h-screen flex items-center justify-center py-xl" id="about">
+<!-- VIEW: ABOUT (el hero vive en el App Shell) -->
+
+<!-- SECTION: OUR MAIN FOCUS -->
+<section class="relative w-full bg-white py-lg md:py-xl overflow-hidden" id="about-focus">
 <div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl">
-<h1 class="font-headline-lg text-[40px] md:text-[64px] uppercase tracking-tight">Quiénes somos</h1>
+<h2 class="reveal-up font-headline-lg text-[26px] leading-[36px] md:text-[40px] md:leading-[50px] uppercase tracking-tight mb-xl" style="transition-delay: 0s;">Our Main <span class="text-primary">Focus</span></h2>
+<p class="reveal-up font-body-lg text-[16px] leading-[26px] md:text-[19px] md:leading-[30px] max-w-[720px] text-on-surface/70" style="transition-delay: 0.15s;">Liderazgo en ingeniería, procura y construcción (IPC) para la recuperación y modernización de <span class="text-primary">complejos industriales</span>.</p>
+</div>
+
+<div class="mt-lg md:mt-xl w-full overflow-hidden">
+<div class="marquee-track flex items-center gap-lg w-max" id="focusMarquee">
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/chemical.jpg" alt="Planta química"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/iso.jpg" alt="Certificación ISO"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/refinery.jpg" alt="Refinería"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/robot.jpg" alt="Automatización robótica"/>
+<!-- duplicado para loop continuo sin cortes -->
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/chemical.jpg" alt="" aria-hidden="true"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/iso.jpg" alt="" aria-hidden="true"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/refinery.jpg" alt="" aria-hidden="true"/>
+<img class="h-[300px] md:h-[420px] w-[300px] md:w-[420px] object-cover rounded-2xl shrink-0" src="img/robot.jpg" alt="" aria-hidden="true"/>
+</div>
+</div>
+</section>
+
+<!-- SECTION: OUR VALUES -->
+<section class="relative w-full bg-white min-h-screen flex items-center py-xl" id="about-values">
+<div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl">
+
+<h2 class="reveal-up font-headline-lg text-[26px] leading-[36px] md:text-[40px] md:leading-[50px] uppercase tracking-tight mb-xl" style="transition-delay: 0s;">Lo Que Nos <span class="text-primary">Define.</span></h2>
+
+<div class="border-t border-surface-dim" id="valuesAccordion">
+
+<div class="value-item border-b border-surface-dim">
+<button class="value-trigger group w-full flex items-center justify-between gap-lg py-xl text-left" type="button" aria-expanded="false">
+<span class="flex items-center gap-lg transition-transform duration-300 group-hover:translate-x-3">
+<span class="h-11 w-11 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-label-md text-[14px]">01</span>
+<span class="font-headline-md text-[20px] md:text-[26px]">Seguridad Ante Todo</span>
+</span>
+<span class="value-icon material-symbols-outlined text-[24px] shrink-0 transition-transform duration-300">add</span>
+</button>
+<div class="value-panel overflow-hidden transition-[max-height] duration-300" style="max-height: 0px;">
+<p class="pb-lg pl-[68px] pr-0 md:pr-[80px] font-body-lg text-[15px] leading-[24px] text-on-surface/70">Cada proyecto se ejecuta bajo protocolos estrictos de seguridad industrial. Ninguna meta operativa justifica poner en riesgo a nuestro equipo, a nuestros clientes o al entorno donde trabajamos.</p>
+</div>
+</div>
+
+<div class="value-item border-b border-surface-dim">
+<button class="value-trigger group w-full flex items-center justify-between gap-lg py-xl text-left" type="button" aria-expanded="false">
+<span class="flex items-center gap-lg transition-transform duration-300 group-hover:translate-x-3">
+<span class="h-11 w-11 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-label-md text-[14px]">02</span>
+<span class="font-headline-md text-[20px] md:text-[26px]">Excelencia en Ingeniería</span>
+</span>
+<span class="value-icon material-symbols-outlined text-[24px] shrink-0 transition-transform duration-300">add</span>
+</button>
+<div class="value-panel overflow-hidden transition-[max-height] duration-300" style="max-height: 0px;">
+<p class="pb-lg pl-[68px] pr-0 md:pr-[80px] font-body-lg text-[15px] leading-[24px] text-on-surface/70">Diseñamos y ejecutamos con precisión técnica, apegados a normativas internacionales. La calidad no se negocia: se mide, se documenta y se sostiene en el tiempo.</p>
+</div>
+</div>
+
+<div class="value-item border-b border-surface-dim">
+<button class="value-trigger group w-full flex items-center justify-between gap-lg py-xl text-left" type="button" aria-expanded="false">
+<span class="flex items-center gap-lg transition-transform duration-300 group-hover:translate-x-3">
+<span class="h-11 w-11 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-label-md text-[14px]">03</span>
+<span class="font-headline-md text-[20px] md:text-[26px]">Transparencia por Diseño</span>
+</span>
+<span class="value-icon material-symbols-outlined text-[24px] shrink-0 transition-transform duration-300">add</span>
+</button>
+<div class="value-panel overflow-hidden transition-[max-height] duration-300" style="max-height: 0px;">
+<p class="pb-lg pl-[68px] pr-0 md:pr-[80px] font-body-lg text-[15px] leading-[24px] text-on-surface/70">Comunicamos avances, riesgos y resultados con claridad en cada etapa del proyecto. Nuestros clientes siempre saben en qué punto está su inversión.</p>
+</div>
+</div>
+
+<div class="value-item border-b border-surface-dim">
+<button class="value-trigger group w-full flex items-center justify-between gap-lg py-xl text-left" type="button" aria-expanded="false">
+<span class="flex items-center gap-lg transition-transform duration-300 group-hover:translate-x-3">
+<span class="h-11 w-11 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center font-label-md text-[14px]">04</span>
+<span class="font-headline-md text-[20px] md:text-[26px]">Compromiso a Largo Plazo</span>
+</span>
+<span class="value-icon material-symbols-outlined text-[24px] shrink-0 transition-transform duration-300">add</span>
+</button>
+<div class="value-panel overflow-hidden transition-[max-height] duration-300" style="max-height: 0px;">
+<p class="pb-lg pl-[68px] pr-0 md:pr-[80px] font-body-lg text-[15px] leading-[24px] text-on-surface/70">No entregamos un proyecto y desaparecemos. Acompañamos a nuestros clientes en la operación, el mantenimiento y la modernización continua de sus complejos industriales.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SECTION: NUESTRA VISIÓN -->
+<section class="relative w-full bg-surface min-h-screen flex items-center py-xl" id="about-vision">
+<div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl">
+
+<h2 class="reveal-up font-headline-lg text-[26px] leading-[36px] md:text-[40px] md:leading-[50px] uppercase tracking-tight mb-lg" style="transition-delay: 0s;">Nuestra <span class="text-primary">Visión</span></h2>
+<p class="reveal-up font-body-lg text-[16px] leading-[26px] md:text-[19px] md:leading-[30px] max-w-[720px] text-on-surface/70 mb-xl" style="transition-delay: 0.1s;">Ser el socio de referencia en ingeniería y modernización industrial en Latinoamérica, impulsando infraestructuras más seguras, eficientes y sostenibles para las próximas décadas.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+
+<div class="relative overflow-hidden group rounded-2xl border border-surface-dim bg-white p-xl min-h-[320px] flex flex-col justify-center">
+<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0"></div>
+<div class="relative z-10 group-hover:text-white transition-colors duration-500">
+<span class="material-symbols-outlined text-[40px] mb-lg block">bolt</span>
+<h3 class="font-headline-md text-[20px] md:text-[24px] mb-md">Energía Confiable</h3>
+<p class="font-body-lg text-[15px] leading-[24px] opacity-70">Infraestructuras eléctricas diseñadas para operar sin interrupciones bajo cualquier condición.</p>
+</div>
+</div>
+
+<div class="relative overflow-hidden group rounded-2xl border border-surface-dim bg-white p-xl min-h-[320px] flex flex-col justify-center">
+<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0"></div>
+<div class="relative z-10 group-hover:text-white transition-colors duration-500">
+<span class="material-symbols-outlined text-[40px] mb-lg block">public</span>
+<h3 class="font-headline-md text-[20px] md:text-[24px] mb-md">Alcance Regional</h3>
+<p class="font-body-lg text-[15px] leading-[24px] opacity-70">Presencia y capacidad de ejecución en proyectos industriales a lo largo de Latinoamérica.</p>
+</div>
+</div>
+
+<div class="relative overflow-hidden group rounded-2xl border border-surface-dim bg-white p-xl min-h-[320px] flex flex-col justify-center">
+<div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0"></div>
+<div class="relative z-10 group-hover:text-white transition-colors duration-500">
+<span class="material-symbols-outlined text-[40px] mb-lg block">trending_up</span>
+<h3 class="font-headline-md text-[20px] md:text-[24px] mb-md">Crecimiento Sostenible</h3>
+<p class="font-body-lg text-[15px] leading-[24px] opacity-70">Soluciones pensadas para escalar junto a nuestros clientes sin comprometer el entorno.</p>
+</div>
+</div>
+
+</div>
 </div>
 </section>

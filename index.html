@@ -6,6 +6,12 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Nova+Square&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<!-- Favicons: cross-browser + iOS + Android -->
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -92,6 +98,9 @@
   }
 </script>
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
     .nav-transition {
         transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -111,38 +120,47 @@
     }
     .compliance-track::-webkit-scrollbar { display: none; }
     .compliance-card { scroll-snap-align: start; }
-    /* Candlestick Animation Setup */
-    @keyframes driftUp {
-        0% { transform: translateY(100vh); opacity: 0; }
-        10% { opacity: 0.8; }
-        90% { opacity: 0.8; }
-        100% { transform: translateY(-100vh); opacity: 0; }
-    }
-    @keyframes driftDown {
-        0% { transform: translateY(-100vh); opacity: 0; }
-        10% { opacity: 0.8; }
-        90% { opacity: 0.8; }
-        100% { transform: translateY(100vh); opacity: 0; }
-    }
-    .candlestick {
-        position: absolute;
-        width: 12px;
-        z-index: 0;
-        border-radius: 2px;
-    }
-    .candlestick::before, .candlestick::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        background-color: inherit;
-    }
-    .candlestick::before { bottom: 100%; height: 20px; }
-    .candlestick::after { top: 100%; height: 20px; }
 
-    .candle-green { background-color: #25D366; animation: driftUp linear infinite; }
-    .candle-red { background-color: #930007; animation: driftDown linear infinite; }
+    /* Marquee de imágenes en movimiento continuo */
+    @keyframes marqueeScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+    .marquee-track {
+        animation: marqueeScroll 45s linear infinite;
+    }
+
+    /* Scroll reveal: fade-up al entrar en pantalla.
+       Oculto SOLO si JS confirma "reveal-pending" (progressive enhancement:
+       si el script no llega a correr, el texto queda visible por defecto). */
+    .reveal-up {
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-up.reveal-pending {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+    .reveal-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .story-slide {
+        will-change: opacity, transform;
+    }
+
+    /* Hero Slider: track deslizable (drag/swipe) */
+    #heroSliderTrack {
+        cursor: grab;
+        will-change: transform;
+    }
+    #heroSliderTrack:active {
+        cursor: grabbing;
+    }
+    #heroSliderTrack img {
+        -webkit-user-drag: none;
+        user-select: none;
+    }
 </style>
 </head>
 <body class="bg-page text-on-background font-body-lg text-body-lg min-h-screen">
@@ -152,18 +170,106 @@
 
 <!-- TopNavBar (persistente) -->
 <nav class="sticky top-0 z-50 nav-transition bg-transparent flex justify-between items-center px-lg md:px-xl h-[72px] -mb-[72px] w-full" id="mainNav">
-<a class="font-headline-lg text-[26px] text-primary cursor-pointer tracking-wide" href="#/home">CTL</a>
+<div class="flex items-center gap-md">
+<button class="md:hidden flex items-center justify-center h-10 w-10 rounded-xl border border-on-surface/20 text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" id="mobileMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+<span class="material-symbols-outlined text-[22px]" id="mobileMenuIcon">menu</span>
+</button>
+<a class="cursor-pointer" href="#/home"><img src="img/original_4x.png" alt="CTL - Corporación Trading Latinoamérica" class="h-10 w-auto object-contain"/></a>
+</div>
 <div class="hidden md:flex items-center gap-lg font-body-lg text-[13px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home">Home</a>
-<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/about">Quiénes somos</a>
-<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/services">Services</a>
-<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/projects">Projects</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home" data-i18n="nav.home">Inicio</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/about" data-i18n="nav.about">Quiénes somos</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/services" data-i18n="nav.services">Services</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/proyectos" data-i18n="nav.proyectos">Proyectos</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
 </div>
 <div class="flex items-center gap-md">
-<button class="font-label-md text-[12px] text-primary hover:opacity-70 transition-opacity" id="langToggle">ENG-ESP</button>
-<a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact">Contact</a>
+<button class="flex items-center gap-xs rounded-full border border-on-surface/20 pl-sm pr-md py-[6px] font-label-md text-[12px] text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" id="langToggle" type="button" aria-label="Cambiar idioma">
+<span class="material-symbols-outlined text-[16px]">language</span>
+<span id="langToggleLabel">ES</span>
+</button>
+<a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact" data-i18n="nav.contact">Contact</a>
 </div>
 </nav>
+
+<!-- Menú móvil (overlay a pantalla completa, con transición suave) -->
+<div class="md:hidden fixed inset-0 z-40 flex flex-col bg-white opacity-0 scale-95 pointer-events-none transition-all duration-300 ease-out" id="mobileMenu">
+<div class="flex-1 flex flex-col items-center justify-center gap-xl px-lg">
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/home" data-i18n="nav.home">Inicio</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/about" data-i18n="nav.about">Quiénes somos</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/services" data-i18n="nav.services">Services</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/proyectos" data-i18n="nav.proyectos">Proyectos</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
+<a class="font-label-md text-[13px] uppercase tracking-widest bg-primary text-on-primary px-xl py-md rounded-lg mt-md" href="#/contact" data-i18n="nav.contact">Contact</a>
+</div>
+</div>
+
+<!-- Hero Slider (persistente, deslizable, un slide por ruta principal) -->
+<section class="relative w-full h-screen overflow-hidden select-none" id="heroSlider">
+<div class="absolute inset-0 flex h-full w-full" id="heroSliderTrack" style="touch-action: pan-y;">
+
+<!-- SLIDE: HOME -->
+<div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/home">
+<div class="absolute inset-0 pointer-events-none" id="blueprint-container"></div>
+<div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
+<h1 class="font-headline-lg text-[28px] leading-[36px] md:text-[64px] md:leading-[74px] mb-lg uppercase tracking-tight break-words">Technical Precision.<br/><span class="text-primary">Uncompromising Impact.</span></h1>
+<img class="h-14 md:h-20 w-auto mx-auto mt-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
+</div>
+</div>
+
+<!-- SLIDE: ABOUT -->
+<div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/about">
+<div class="absolute inset-0 bg-cover bg-top opacity-40" style="background-image: url('img/energy1.jpg');"></div>
+<div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
+<h1 class="font-headline-lg text-[28px] leading-[36px] md:text-[64px] md:leading-[74px] mb-lg uppercase tracking-tight break-words">Infraestructura Energética Industrial.<br/><span class="text-primary">Ingeniería Sin Concesiones.</span></h1>
+<img class="h-14 md:h-20 w-auto mx-auto mt-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
+</div>
+</div>
+
+<!-- SLIDE: SERVICES -->
+<div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/services">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('img/cualquierhero.avif');"></div>
+<div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
+<h1 class="font-headline-lg text-[24px] leading-[32px] md:text-[56px] md:leading-[66px] mb-lg uppercase tracking-tight break-words">Procesos Industriales <span class="text-primary">De Punta a Punta.</span></h1>
+<img class="h-14 md:h-20 w-auto mx-auto mt-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
+</div>
+</div>
+
+<!-- SLIDE: PROYECTOS -->
+<div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/proyectos">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('img/heroproyectos.jpg');"></div>
+<div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
+<h1 class="font-headline-lg text-[26px] leading-[34px] md:text-[60px] md:leading-[70px] mb-lg uppercase tracking-tight break-words">Ingeniería Aplicada A <span class="text-primary">Proyectos Reales.</span></h1>
+<img class="h-14 md:h-20 w-auto mx-auto mt-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
+</div>
+</div>
+
+<!-- SLIDE: COMPLIANCE -->
+<div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/compliance">
+<div class="absolute inset-0 bg-cover bg-top opacity-40" style="background-image: url('img/herocualquiera.jpg');"></div>
+<div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
+<h1 class="font-headline-lg text-[24px] leading-[32px] md:text-[56px] md:leading-[66px] mb-lg uppercase tracking-tight break-words">We Comply With The Highest Standards In <span class="text-primary">Ethics And Compliance.</span></h1>
+<img class="h-14 md:h-20 w-auto mx-auto mt-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
+</div>
+</div>
+
+</div>
+
+<!-- Flechas -->
+<button class="absolute left-md md:left-xl top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-on-surface/20 bg-white/70 backdrop-blur-md flex items-center justify-center hover:bg-white transition-colors duration-200 disabled:opacity-30 disabled:pointer-events-none" id="heroPrev" type="button" aria-label="Slide anterior">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<button class="absolute right-md md:right-xl top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-on-surface/20 bg-white/70 backdrop-blur-md flex items-center justify-center hover:bg-white transition-colors duration-200 disabled:opacity-30 disabled:pointer-events-none" id="heroNext" type="button" aria-label="Slide siguiente">
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+
+<!-- Puntos (uno por ruta) -->
+<div class="absolute bottom-xl left-1/2 -translate-x-1/2 z-20 flex items-center gap-sm" id="heroDots">
+<button class="hero-dot h-[10px] w-[10px] rounded-full bg-on-surface/30 transition-all duration-300" data-path="/home" type="button" aria-label="Ir a Inicio"></button>
+<button class="hero-dot h-[10px] w-[10px] rounded-full bg-on-surface/30 transition-all duration-300" data-path="/about" type="button" aria-label="Ir a Quiénes somos"></button>
+<button class="hero-dot h-[10px] w-[10px] rounded-full bg-on-surface/30 transition-all duration-300" data-path="/services" type="button" aria-label="Ir a Servicios"></button>
+<button class="hero-dot h-[10px] w-[10px] rounded-full bg-on-surface/30 transition-all duration-300" data-path="/proyectos" type="button" aria-label="Ir a Proyectos"></button>
+<button class="hero-dot h-[10px] w-[10px] rounded-full bg-on-surface/30 transition-all duration-300" data-path="/compliance" type="button" aria-label="Ir a Compliance"></button>
+</div>
+</section>
 
 <!-- Outlet: aquí el router inyecta cada vista -->
 <main class="flex-grow" id="app-content"></main>
@@ -173,23 +279,23 @@
 <div class="grid grid-cols-1 md:grid-cols-3 gap-md px-lg md:px-xl py-lg max-w-[1440px] mx-auto">
 <div>
 <div class="font-headline-lg text-white text-[13px] mb-xs">CTL</div>
-<p class="text-surface-dim text-[10px]">Industrial Grade Solutions.</p>
+<p class="text-surface-dim text-[10px]" data-i18n="footer.tagline">Industrial Grade Solutions.</p>
 </div>
 <div>
-<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider">Directives</h4>
+<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider" data-i18n="footer.directives">Directives</h4>
 <ul class="space-y-xs text-[12px]">
-<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#" data-i18n="footer.terms">Terms of Service</a></li>
 </ul>
 </div>
 <div>
-<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider">Framework</h4>
+<h4 class="font-label-md text-primary uppercase text-[11px] mb-sm tracking-wider" data-i18n="footer.framework">Framework</h4>
 <ul class="space-y-xs text-[12px]">
-<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Compliance Norms</a></li>
-<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#">Cookie Policy</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#" data-i18n="footer.compliance">Compliance Norms</a></li>
+<li><a class="hover:text-primary transition-all duration-300 opacity-80 hover:opacity-100" href="#" data-i18n="footer.cookies">Cookie Policy</a></li>
 </ul>
 </div>
-<div class="text-right md:col-span-3 mt-md pt-sm border-t border-tertiary text-[9px] text-surface-dim">
+<div class="text-right md:col-span-3 mt-md pt-sm border-t border-tertiary text-[9px] text-surface-dim" data-i18n="footer.copyright">
     © 2024 Corporación Trading Latinoamérica (CTL). RIF: J-12345678-9. All rights reserved.
 </div>
 </div>
@@ -199,8 +305,8 @@
 
 <!-- BottomNavBar (FAB WhatsApp, persistente) -->
 <div class="fixed bottom-8 right-8 z-50 flex items-center justify-center">
-<a class="bg-[#25D366] text-white rounded-full h-12 w-12 flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-primary/50 animate-bounce transition-all duration-500" href="#" aria-label="WhatsApp">
-<span class="material-symbols-outlined text-[24px]">chat</span>
+<a class="hover:scale-110 animate-bounce transition-all duration-500 drop-shadow-2xl" href="#" aria-label="WhatsApp">
+<img src="img/WhatsApp.svg" alt="WhatsApp" class="h-14 w-14 object-contain"/>
 </a>
 </div>
 

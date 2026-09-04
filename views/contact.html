@@ -1,6 +1,217 @@
-<!-- VIEW: CONTACT — pendiente de contenido -->
-<section class="bg-white min-h-screen flex items-center justify-center py-xl" id="contact">
-<div class="w-full max-w-[1440px] mx-auto px-lg md:px-xl">
-<h1 class="font-headline-lg text-[40px] md:text-[64px] uppercase tracking-tight">Contact</h1>
-</div>
+<!-- VIEW: CONTACT — Rediseño open-style -->
+<section class="bg-white min-h-screen" id="contact">
+  <div class="w-full max-w-[1280px] mx-auto px-lg md:px-xl pt-[calc(72px+48px)] pb-xl">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+
+      <!-- ═══════════════════════════════════════
+           LEFT — Brand info, socials, offices
+           ═══════════════════════════════════════ -->
+      <div class="lg:col-span-4 flex flex-col justify-between gap-xl">
+
+        <div>
+          <!-- Badge -->
+          <span class="inline-block font-label-md text-[11px] uppercase tracking-[0.25em] text-primary border border-primary/40 px-md py-xs rounded-full mb-lg">
+            Say Hi
+          </span>
+
+          <!-- Headline -->
+          <h1 class="font-headline-lg text-[42px] md:text-[56px] leading-[1.05] uppercase tracking-tight mb-lg">
+            Get in<br/><span class="text-primary">Touch</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 mb-xl">
+            Connect with our team for high-stakes engineering solutions, compliance inquiries, or strategic partnerships.
+          </p>
+
+          <!-- Social Links -->
+          <div class="flex flex-col gap-sm">
+            <a
+              class="group inline-flex items-center gap-sm font-label-md text-[12px] uppercase tracking-[0.2em] text-on-surface/50 hover:text-primary transition-colors duration-300"
+              href="#"
+              aria-label="Facebook"
+            >
+              <span class="h-[1px] w-4 bg-current transition-all duration-300 group-hover:w-8"></span>
+              Facebook
+            </a>
+            <a
+              class="group inline-flex items-center gap-sm font-label-md text-[12px] uppercase tracking-[0.2em] text-on-surface/50 hover:text-primary transition-colors duration-300"
+              href="#"
+              aria-label="Instagram"
+            >
+              <span class="h-[1px] w-4 bg-current transition-all duration-300 group-hover:w-8"></span>
+              Instagram
+            </a>
+            <a
+              class="group inline-flex items-center gap-sm font-label-md text-[12px] uppercase tracking-[0.2em] text-on-surface/50 hover:text-primary transition-colors duration-300"
+              href="#"
+              aria-label="LinkedIn"
+            >
+              <span class="h-[1px] w-4 bg-current transition-all duration-300 group-hover:w-8"></span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Office info — texto con link a Google Maps -->
+        <div class="flex flex-col gap-lg border-t border-surface-dim pt-lg">
+
+          <!-- Caracas HQ -->
+          <!-- TODO: reemplaza href con el link de Google Maps -->
+          <div>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs">Caracas HQ</p>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-start gap-xs text-on-surface/60 hover:text-primary transition-colors duration-200"
+              aria-label="Ver Caracas HQ en Google Maps"
+            >
+              <p class="font-body-lg text-[13px] leading-[1.6]">
+                Torre Europa, Piso 12, Av. Francisco de Miranda,<br/>Campo Alegre, Caracas 1060.
+              </p>
+              <span class="material-symbols-outlined text-[13px] shrink-0 mt-[3px] opacity-40 group-hover:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+            <p class="font-label-md text-[12px] text-on-surface/40 mt-xs">+58 212 555 1234</p>
+          </div>
+
+          <!-- Lechería Base -->
+          <!-- TODO: reemplaza href con el link de Google Maps -->
+          <div>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs">Lechería Base</p>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-start gap-xs text-on-surface/60 hover:text-primary transition-colors duration-200"
+              aria-label="Ver Lechería Base en Google Maps"
+            >
+              <p class="font-body-lg text-[13px] leading-[1.6]">
+                C.C. Caribbean Mall, Nivel Oficinas,<br/>Sector Venecia, Lechería, Anzoátegui.
+              </p>
+              <span class="material-symbols-outlined text-[13px] shrink-0 mt-[3px] opacity-40 group-hover:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+            <p class="font-label-md text-[12px] text-on-surface/40 mt-xs">+58 281 555 9876</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════
+           RIGHT — Underline-style form (sin caja)
+           ═══════════════════════════════════════ -->
+      <div class="lg:col-span-8 lg:pl-xl lg:border-l lg:border-surface-dim">
+        <form action="#" class="space-y-xl" id="contact-form" method="POST" novalidate>
+
+          <!-- ── Section: Reason of Contact ── -->
+          <div>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-md">
+              Reason of Contact
+            </p>
+            <div class="flex flex-wrap gap-sm">
+
+              <label class="cursor-pointer">
+                <input class="peer sr-only" name="subject" type="radio" value="engineering" checked/>
+                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
+                  Engineering Services
+                </span>
+              </label>
+
+              <label class="cursor-pointer">
+                <input class="peer sr-only" name="subject" type="radio" value="trading"/>
+                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
+                  International Trading
+                </span>
+              </label>
+
+              <label class="cursor-pointer">
+                <input class="peer sr-only" name="subject" type="radio" value="compliance"/>
+                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
+                  Compliance &amp; Norms
+                </span>
+              </label>
+
+              <label class="cursor-pointer">
+                <input class="peer sr-only" name="subject" type="radio" value="other"/>
+                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
+                  Other
+                </span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- ── Section: Personal Info ── -->
+          <div>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-lg">
+              Personal Info
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+
+              <!-- Name -->
+              <div class="flex flex-col gap-xs">
+                <label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-name">
+                  Name
+                </label>
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200"
+                  id="contact-name"
+                  name="name"
+                  placeholder="Full Name"
+                  required
+                  type="text"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="flex flex-col gap-xs">
+                <label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-email">
+                  Email
+                </label>
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200"
+                  id="contact-email"
+                  name="email"
+                  placeholder="work@company.com"
+                  required
+                  type="email"
+                />
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── Section: Message ── -->
+          <div>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-lg">
+              Your Message <span class="text-on-surface/25 normal-case tracking-normal">(optional)</span>
+            </p>
+            <textarea
+              class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200 resize-none"
+              id="contact-message"
+              name="message"
+              placeholder="Provide details regarding your project or inquiry..."
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- ── Submit ── -->
+          <div class="pt-sm">
+            <button
+              class="group inline-flex items-center gap-sm bg-primary text-on-primary font-label-md text-[13px] uppercase tracking-[0.2em] px-xl py-md rounded-lg hover:bg-primary-container active:scale-95 transition-all duration-200"
+              id="contact-submit"
+              type="submit"
+            >
+              <span>Submit</span>
+              <span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <!-- /Form -->
+
+    </div>
+  </div>
 </section>

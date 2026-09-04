@@ -9,15 +9,19 @@
  *     ya que innerHTML no ejecuta <script>.
  *  5. Sincronizar el estado "activo" de la barra de navegación global.
  */
+import { applyLang } from './i18n.js';
+import { mountHeroSlider, syncHeroSlider } from './components/heroSlider.js';
 
 // ---------------------------------------------------------------------------
 // Tabla de rutas
 // ---------------------------------------------------------------------------
 const routes = {
     '/home':     { view: 'views/home.html',      module: './views/home.js',     title: 'CTL - Inicio' },
-    '/about':    { view: 'views/about.html',     module: null,                  title: 'CTL - Quiénes somos' },
-    '/services': { view: 'views/services.html',  module: null,                  title: 'CTL - Servicios' },
+    '/about':    { view: 'views/about.html',     module: './views/about.js',    title: 'CTL - Quiénes somos' },
+    '/services': { view: 'views/services.html',  module: './views/services.js', title: 'CTL - Servicios' },
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
+    '/proyectos': { view: 'views/proyectos.html', module: './views/proyectos.js', title: 'CTL - Proyectos Emblemáticos' },
+    '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
     '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
 };
 
@@ -29,7 +33,7 @@ const DEFAULT_ROUTE = '/home';
 // ---------------------------------------------------------------------------
 export const appState = {
     currentPath: null,
-    lang: localStorage.getItem('ctl-lang') || 'ESP',
+    lang: localStorage.getItem('ctl-lang') || 'ES',
     isLoading: false,
 };
 
@@ -59,7 +63,8 @@ async function fetchView(url) {
 }
 
 function setActiveNav(path) {
-    document.querySelectorAll('#mainNav .nav-item').forEach((link) => {
+    // Selector global (no solo #mainNav): también cubre los links del menú móvil.
+    document.querySelectorAll('.nav-item').forEach((link) => {
         const target = (link.getAttribute('href') || '').replace(/^#/, '');
         const isActive = target === path;
 
@@ -115,7 +120,20 @@ async function render(path) {
         document.title = route.title;
         appState.currentPath = path;
         setActiveNav(path);
-        window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+        syncHeroSlider(path);
+
+        // El salto de ruta debe ser instantáneo: se desactiva momentáneamente el
+        // "scroll-behavior: smooth" global (CSS) para que no lo anime. La
+        // restauración se difiere (setTimeout) para no pisar el salto antes de
+        // que el navegador lo aplique.
+        const scrollTarget = route.scrollTo && document.getElementById(route.scrollTo);
+        const prevScrollBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        if (scrollTarget) scrollTarget.scrollIntoView({ block: 'start' });
+        else window.scrollTo(0, 0);
+        setTimeout(() => {
+            document.documentElement.style.scrollBehavior = prevScrollBehavior;
+        }, 0);
     } catch (err) {
         if (token !== navToken) return;
         console.error('[router]', err);
@@ -135,6 +153,9 @@ async function render(path) {
 // Chrome global (header, idioma) — vive fuera del ciclo de vida de las vistas
 // ---------------------------------------------------------------------------
 function initShell() {
+    // Hero Slider global: navega la SPA real al deslizar/usar flechas o puntos.
+    mountHeroSlider({ navigate });
+
     // Smart header: se oculta al bajar, reaparece al subir.
     const nav = document.getElementById('mainNav');
     if (nav) {
@@ -151,17 +172,44 @@ function initShell() {
         }, { passive: true });
     }
 
-    // Toggle de idioma (estado global persistente).
+    // Toggle de idioma (estado global persistente): traduce nav + footer.
     const langToggle = document.getElementById('langToggle');
+    applyLang(appState.lang);
     if (langToggle) {
-        const paint = () => { langToggle.textContent = appState.lang === 'ESP' ? 'ENG-ESP' : 'ESP-ENG'; };
         langToggle.addEventListener('click', () => {
-            appState.lang = appState.lang === 'ESP' ? 'ENG' : 'ESP';
+            appState.lang = appState.lang === 'ES' ? 'EN' : 'ES';
             localStorage.setItem('ctl-lang', appState.lang);
-            document.documentElement.lang = appState.lang === 'ESP' ? 'es' : 'en';
-            paint();
+            applyLang(appState.lang);
         });
-        paint();
+    }
+
+    // Menú móvil (hamburguesa): solo visible por debajo del breakpoint md.
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileIcon = document.getElementById('mobileMenuIcon');
+    if (mobileToggle && mobileMenu) {
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            mobileMenu.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            if (mobileIcon) mobileIcon.textContent = 'menu';
+            document.body.classList.remove('overflow-hidden');
+        };
+        const openMobileMenu = () => {
+            mobileMenu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            if (mobileIcon) mobileIcon.textContent = 'close';
+            document.body.classList.add('overflow-hidden');
+        };
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = mobileToggle.getAttribute('aria-expanded') === 'true';
+            if (isOpen) closeMobileMenu(); else openMobileMenu();
+        });
+        mobileMenu.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        window.addEventListener('hashchange', closeMobileMenu);
     }
 }
 
