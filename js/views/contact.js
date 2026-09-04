@@ -85,9 +85,8 @@ async function handleSubmit(e) {
         <span>Sending…</span>
     `;
 
-    // ── Construir datos ──
+    // ── Construir datos (access_key ya viene del hidden input del form) ──
     const formData = new FormData(formEl);
-    formData.append('access_key', ACCESS_KEY);
 
     try {
         const res  = await fetch(WEB3FORMS_URL, { method: 'POST', body: formData });
@@ -97,11 +96,12 @@ async function handleSubmit(e) {
             showToast('Message sent successfully!');
             formEl.reset();
         } else {
+            console.warn('[contact] Web3Forms rejected:', json);
             throw new Error(json.message || 'Submission failed');
         }
     } catch (err) {
         console.error('[contact] Web3Forms error:', err);
-        showToast('Failed to send. Please try again.', true);
+        showToast(err.message || 'Failed to send. Please try again.', true);
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
