@@ -6,8 +6,6 @@
  * si la ruta cambia por otro medio (nav, atrás/adelante del navegador),
  * el slider se re-posiciona sin volver a disparar una navegación (evita loops).
  */
-import { mountBlueprintScene } from './blueprintScene.js';
-
 const ROUTES = ['/home', '/about', '/services', '/proyectos', '/compliance'];
 const DRAG_THRESHOLD_RATIO = 0.15;
 
@@ -110,10 +108,6 @@ export function mountHeroSlider({ navigate } = {}) {
     window.addEventListener('pointercancel', onPointerUp);
     window.addEventListener('resize', onResize);
 
-    // Fondo 3D del slide Home (Three.js): antes vivía en home.js, ahora se
-    // monta una sola vez porque el hero pasó a ser parte del shell persistente.
-    const blueprintContainer = document.getElementById('blueprint-container');
-    if (blueprintContainer) mountBlueprintScene(blueprintContainer);
 }
 
 /** Llamado por el router tras cada render(): re-posiciona el slider sin navegar. */
