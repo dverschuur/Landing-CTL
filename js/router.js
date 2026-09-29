@@ -121,6 +121,7 @@ async function render(path) {
         appState.currentPath = path;
         setActiveNav(path);
         syncHeroSlider(path);
+        applyLang(appState.lang);
 
         // El salto de ruta debe ser instantáneo: se desactiva momentáneamente el
         // "scroll-behavior: smooth" global (CSS) para que no lo anime. La

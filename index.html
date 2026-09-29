@@ -4,7 +4,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>CTL - Corporación Trading Latinoamérica</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
 <link href="https://fonts.googleapis.com/css2?family=Nova+Square&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <!-- Favicons: cross-browser + iOS + Android -->
 <link rel="icon" type="image/x-icon" href="favicon.ico"/>
@@ -18,53 +19,53 @@
     theme: {
       extend: {
         "colors": {
-                "tertiary-container": "#5d5f5f",
-                "surface-dim": "#dadada",
-                "tertiary-fixed": "#e2e2e2",
+                "tertiary-container": "#a8f0e6",
+                "surface-dim": "#d8dee6",
+                "tertiary-fixed": "#a8f0e6",
                 "on-error-container": "#93000a",
-                "on-surface-variant": "#5c403c",
+                "on-surface-variant": "#43474e",
                 "on-secondary": "#ffffff",
-                "surface-container-highest": "#e2e2e2",
-                "on-primary-container": "#ffcdc6",
+                "surface-container-highest": "#e0e5eb",
+                "on-primary-container": "#cfe0f5",
                 "on-tertiary": "#ffffff",
-                "primary-fixed": "#ffdad5",
-                "inverse-primary": "#ffb4aa",
-                "primary-container": "#bc1515",
-                "tertiary": "#464748",
-                "surface-variant": "#e2e2e2",
+                "primary-fixed": "#cfe0f5",
+                "inverse-primary": "#9dbbe0",
+                "primary-container": "#1e3a5f",
+                "tertiary": "#0d9488",
+                "surface-variant": "#dde3ea",
                 "on-error": "#ffffff",
                 "error-container": "#ffdad6",
                 "error": "#ba1a1a",
-                "on-tertiary-fixed": "#1a1c1c",
-                "on-tertiary-fixed-variant": "#454747",
-                "surface-container": "#eeeeee",
-                "outline-variant": "#e5bdb8",
+                "on-tertiary-fixed": "#00201b",
+                "on-tertiary-fixed-variant": "#0a6e64",
+                "surface-container": "#eceff3",
+                "outline-variant": "#c3c7cf",
                 "surface-container-lowest": "#ffffff",
-                "inverse-surface": "#2f3131",
+                "inverse-surface": "#2f3033",
                 "on-primary": "#ffffff",
-                "primary-fixed-dim": "#ffb4aa",
-                "on-secondary-fixed": "#1b1b1b",
-                "surface": "#f9f9f9",
-                "secondary": "#5e5e5e",
-                "on-primary-fixed-variant": "#930007",
-                "primary": "#930007",
-                "secondary-container": "#e2e2e2",
-                "inverse-on-surface": "#f1f1f1",
-                "surface-bright": "#f9f9f9",
-                "on-secondary-container": "#646464",
-                "background": "#f9f9f9",
-                "on-tertiary-container": "#d9d9d9",
-                "secondary-fixed-dim": "#c6c6c6",
-                "surface-container-high": "#e8e8e8",
-                "on-surface": "#1a1c1c",
-                "on-secondary-fixed-variant": "#474747",
-                "outline": "#906f6b",
-                "on-primary-fixed": "#410001",
-                "tertiary-fixed-dim": "#c6c6c7",
-                "secondary-fixed": "#e2e2e2",
-                "on-background": "#1a1c1c",
-                "surface-container-low": "#f4f3f3",
-                "surface-tint": "#bc1515",
+                "primary-fixed-dim": "#9dbbe0",
+                "on-secondary-fixed": "#001e2e",
+                "surface": "#f8fafc",
+                "secondary": "#0284c7",
+                "on-primary-fixed-variant": "#2c4a70",
+                "primary": "#11223b",
+                "secondary-container": "#d3edff",
+                "inverse-on-surface": "#f1f0f4",
+                "surface-bright": "#f8fafc",
+                "on-secondary-container": "#003554",
+                "background": "#f8fafc",
+                "on-tertiary-container": "#00332c",
+                "secondary-fixed-dim": "#7ecbf5",
+                "surface-container-high": "#e6eaef",
+                "on-surface": "#1a1c1e",
+                "on-secondary-fixed-variant": "#045583",
+                "outline": "#73777f",
+                "on-primary-fixed": "#051022",
+                "tertiary-fixed-dim": "#5cd4c4",
+                "secondary-fixed": "#d3edff",
+                "on-background": "#1a1c1e",
+                "surface-container-low": "#f2f5f8",
+                "surface-tint": "#11223b",
                 "page": "#d6d6d6"
         },
         "borderRadius": {
@@ -98,6 +99,27 @@
   }
 </script>
 <style>
+    @font-face {
+        font-family: 'Material Symbols Outlined';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('fonts/material-symbols-outlined.woff2') format('woff2');
+    }
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined';
+        font-weight: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+    }
     html {
         scroll-behavior: smooth;
     }
@@ -179,14 +201,14 @@
 <div class="hidden md:flex items-center gap-lg font-body-lg text-[13px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 <a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/home" data-i18n="nav.home">Inicio</a>
 <a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/about" data-i18n="nav.about">Quiénes somos</a>
-<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/services" data-i18n="nav.services">Services</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/proyectos" data-i18n="nav.proyectos">Proyectos</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
+<a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/services" data-i18n="nav.services">Servicios</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/proyectos" data-i18n="nav.proyectos">Proyectos</a><a class="nav-item text-on-surface/70 hover:text-primary transition-colors duration-200 pb-[2px]" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
 </div>
 <div class="flex items-center gap-md">
 <button class="flex items-center gap-xs rounded-full border border-on-surface/20 pl-sm pr-md py-[6px] font-label-md text-[12px] text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" id="langToggle" type="button" aria-label="Cambiar idioma">
 <span class="material-symbols-outlined text-[16px]">language</span>
 <span id="langToggleLabel">ES</span>
 </button>
-<a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact" data-i18n="nav.contact">Contact</a>
+<a class="font-label-md text-[12px] bg-primary text-on-primary px-lg py-[6px] rounded-lg border-2 border-primary hover:bg-transparent hover:text-primary transition-all duration-200 active:scale-95 inline-block" href="#/contact" data-i18n="nav.contact">Contacto</a>
 </div>
 </nav>
 
@@ -195,10 +217,10 @@
 <div class="flex-1 flex flex-col items-center justify-center gap-xl px-lg">
 <a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/home" data-i18n="nav.home">Inicio</a>
 <a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/about" data-i18n="nav.about">Quiénes somos</a>
-<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/services" data-i18n="nav.services">Services</a>
+<a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/services" data-i18n="nav.services">Servicios</a>
 <a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/proyectos" data-i18n="nav.proyectos">Proyectos</a>
 <a class="nav-item font-headline-md text-[28px] uppercase tracking-tight text-on-surface/80 hover:text-primary transition-colors duration-200" href="#/compliance" data-i18n="nav.compliance">Certificados</a>
-<a class="font-label-md text-[13px] uppercase tracking-widest bg-primary text-on-primary px-xl py-md rounded-lg mt-md" href="#/contact" data-i18n="nav.contact">Contact</a>
+<a class="font-label-md text-[13px] uppercase tracking-widest bg-primary text-on-primary px-xl py-md rounded-lg mt-md" href="#/contact" data-i18n="nav.contact">Contacto</a>
 </div>
 </div>
 
@@ -208,10 +230,10 @@
 
 <!-- SLIDE: HOME -->
 <div class="hero-slide relative w-full h-full flex-shrink-0 flex items-center justify-center overflow-hidden bg-white" data-path="/home">
-<video class="absolute inset-0 h-full w-full object-cover pointer-events-none" src="img/hero-map-rotating.mp4" autoplay loop muted playsinline></video>
+<video class="absolute inset-0 h-full w-full object-cover pointer-events-none" style="filter: hue-rotate(200deg) saturate(1.8);" src="img/hero-map-rotating.mp4" autoplay loop muted playsinline></video>
 <div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
 <img class="h-20 md:h-28 w-auto mx-auto mb-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
-<h1 class="font-headline-lg text-[22px] leading-[30px] md:text-[46px] md:leading-[56px] mb-lg uppercase tracking-tight break-words">Technical Precision.<br/><span class="text-primary">Uncompromising Impact.</span></h1>
+<h1 class="font-headline-lg text-[22px] leading-[30px] md:text-[46px] md:leading-[56px] mb-lg uppercase tracking-tight break-words"><span data-i18n="hero.home.line1">Precisión Técnica.</span><br/><span class="text-primary" data-i18n="hero.home.line2">Impacto Sin Concesiones.</span></h1>
 </div>
 </div>
 
@@ -220,7 +242,7 @@
 <div class="absolute inset-0 bg-cover bg-top opacity-40" style="background-image: url('img/energy1.jpg');"></div>
 <div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
 <img class="h-20 md:h-28 w-auto mx-auto mb-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
-<h1 class="font-headline-lg text-[22px] leading-[30px] md:text-[46px] md:leading-[56px] mb-lg uppercase tracking-tight break-words">Infraestructura Energética Industrial.<br/><span class="text-primary">Ingeniería Sin Concesiones.</span></h1>
+<h1 class="font-headline-lg text-[22px] leading-[30px] md:text-[46px] md:leading-[56px] mb-lg uppercase tracking-tight break-words"><span data-i18n="hero.about.line1">Infraestructura Energética Industrial.</span><br/><span class="text-primary" data-i18n="hero.about.line2">Ingeniería Sin Concesiones.</span></h1>
 </div>
 </div>
 
@@ -229,7 +251,7 @@
 <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('img/cualquierhero.avif');"></div>
 <div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
 <img class="h-20 md:h-28 w-auto mx-auto mb-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
-<h1 class="font-headline-lg text-[20px] leading-[28px] md:text-[40px] md:leading-[50px] mb-lg uppercase tracking-tight break-words">Procesos Industriales <span class="text-primary">De Punta a Punta.</span></h1>
+<h1 class="font-headline-lg text-[20px] leading-[28px] md:text-[40px] md:leading-[50px] mb-lg uppercase tracking-tight break-words"><span data-i18n="hero.services.line1">Procesos Industriales</span> <span class="text-primary" data-i18n="hero.services.line2">De Punta a Punta.</span></h1>
 </div>
 </div>
 
@@ -238,7 +260,7 @@
 <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('img/heroproyectos.jpg');"></div>
 <div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
 <img class="h-20 md:h-28 w-auto mx-auto mb-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
-<h1 class="font-headline-lg text-[21px] leading-[29px] md:text-[43px] md:leading-[53px] mb-lg uppercase tracking-tight break-words">Ingeniería Aplicada A <span class="text-primary">Proyectos Reales.</span></h1>
+<h1 class="font-headline-lg text-[21px] leading-[29px] md:text-[43px] md:leading-[53px] mb-lg uppercase tracking-tight break-words"><span data-i18n="hero.proyectos.line1">Ingeniería Aplicada A</span> <span class="text-primary" data-i18n="hero.proyectos.line2">Proyectos Reales.</span></h1>
 </div>
 </div>
 
@@ -247,7 +269,7 @@
 <div class="absolute inset-0 bg-cover bg-top opacity-40" style="background-image: url('img/herocualquiera.jpg');"></div>
 <div class="relative z-10 text-center px-xl md:px-[64px] py-xl md:py-[56px] w-fit max-w-[min(900px,92vw)] mx-auto rounded-[32px] border border-white/40 bg-white/40 backdrop-blur-xl shadow-xl">
 <img class="h-20 md:h-28 w-auto mx-auto mb-lg" src="img/logohero.png" alt="CTL - Corporación Trading Latinoamérica"/>
-<h1 class="font-headline-lg text-[20px] leading-[28px] md:text-[40px] md:leading-[50px] mb-lg uppercase tracking-tight break-words">We Comply With The Highest Standards In <span class="text-primary">Ethics And Compliance.</span></h1>
+<h1 class="font-headline-lg text-[20px] leading-[28px] md:text-[40px] md:leading-[50px] mb-lg uppercase tracking-tight break-words"><span data-i18n="hero.compliance.line1">Cumplimos Con Los Más Altos Estándares En</span> <span class="text-primary" data-i18n="hero.compliance.line2">Ética Y Cumplimiento.</span></h1>
 </div>
 </div>
 

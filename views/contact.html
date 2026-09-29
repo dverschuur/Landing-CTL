@@ -11,18 +11,18 @@
 
         <div>
           <!-- Badge -->
-          <span class="inline-block font-label-md text-[11px] uppercase tracking-[0.25em] text-primary border border-primary/40 px-md py-xs rounded-full mb-lg">
-            Say Hi
+          <span class="inline-block font-label-md text-[11px] uppercase tracking-[0.25em] text-primary border border-primary/40 px-md py-xs rounded-full mb-lg" data-i18n="contact.badge">
+            Salúdanos
           </span>
 
           <!-- Headline -->
           <h1 class="font-headline-lg text-[42px] md:text-[56px] leading-[1.05] uppercase tracking-tight mb-lg">
-            Get in<br/><span class="text-primary">Touch</span>
+            <span data-i18n="contact.title1">Ponte en</span><br/><span class="text-primary" data-i18n="contact.title2">Contacto</span>
           </h1>
 
           <!-- hola -->
-          <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 mb-xl">
-            Connect with our team for high-stakes engineering solutions, compliance inquiries, or strategic partnerships.
+          <p class="font-body-lg text-[15px] leading-[1.75] text-on-surface/60 mb-xl" data-i18n="contact.intro">
+            Conecta con nuestro equipo para soluciones de ingeniería de alto nivel, consultas de cumplimiento o alianzas estratégicas.
           </p>
 
           <!-- Social Links -->
@@ -60,7 +60,7 @@
           <!-- Caracas HQ -->
           <!-- TODO: reemplaza href con el link de Google Maps -->
           <div>
-            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs">Caracas HQ</p>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs" data-i18n="contact.office.caracas">Sede Caracas</p>
             <a
               href="#"
               target="_blank"
@@ -79,7 +79,7 @@
           <!-- Lechería Base -->
           <!-- TODO: reemplaza href con el link de Google Maps -->
           <div>
-            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs">Lechería Base</p>
+            <p class="font-label-md text-[11px] uppercase tracking-[0.2em] text-primary mb-xs" data-i18n="contact.office.lecheria">Base Lechería</p>
             <a
               href="#"
               target="_blank"
@@ -106,36 +106,36 @@
 
           <!-- ── Section: Reason of Contact ── -->
           <div>
-            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-md">
-              Reason of Contact
+            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-md" data-i18n="contact.reasonLabel">
+              Motivo de Contacto
             </p>
             <div class="flex flex-wrap gap-sm">
 
               <label class="cursor-pointer">
                 <input class="peer sr-only" name="subject" type="radio" value="engineering" checked/>
-                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
-                  Engineering Services
+<span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40" data-i18n="contact.reason.engineering">
+                  Servicios de Ingeniería
                 </span>
               </label>
 
               <label class="cursor-pointer">
                 <input class="peer sr-only" name="subject" type="radio" value="trading"/>
-                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
-                  International Trading
+<span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40" data-i18n="contact.reason.trading">
+                  Comercio Internacional
                 </span>
               </label>
 
               <label class="cursor-pointer">
                 <input class="peer sr-only" name="subject" type="radio" value="compliance"/>
-                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
-                  Compliance &amp; Norms
+<span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40" data-i18n="contact.reason.compliance">
+                  Cumplimiento y Normativas
                 </span>
               </label>
 
               <label class="cursor-pointer">
                 <input class="peer sr-only" name="subject" type="radio" value="other"/>
-                <span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40">
-                  Other
+<span class="block px-md py-sm font-label-md text-[12px] border border-outline-variant rounded-full transition-all duration-200 peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary/5 hover:border-on-surface/40" data-i18n="contact.reason.other">
+                  Otro
                 </span>
               </label>
 
@@ -144,21 +144,22 @@
 
           <!-- ── Section: Personal Info ── -->
           <div>
-            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-lg">
-              Personal Info
+            <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-lg" data-i18n="contact.personalInfo">
+              Información Personal
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
 
               <!-- Name -->
               <div class="flex flex-col gap-xs">
-                <label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-name">
-                  Name
+                <label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-name" data-i18n="contact.name.label">
+                  Nombre
                 </label>
                 <input
                   class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200"
                   id="contact-name"
                   name="name"
-                  placeholder="Full Name"
+                  placeholder="Nombre Completo"
+                  data-i18n-placeholder="contact.name.placeholder"
                   required
                   type="text"
                 />
@@ -166,8 +167,8 @@
 
               <!-- Email -->
               <div class="flex flex-col gap-xs">
-                <label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-email">
-                  Email
+<label class="font-label-md text-[11px] uppercase tracking-[0.15em] text-on-surface/35" for="contact-email" data-i18n="contact.email.label">
+                  Correo Electrónico
                 </label>
                 <input
                   class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200"
@@ -185,13 +186,14 @@
           <!-- ── Section: Message ── -->
           <div>
             <p class="font-label-md text-[11px] uppercase tracking-[0.25em] text-on-surface/40 mb-lg">
-              Your Message <span class="text-on-surface/25 normal-case tracking-normal">(optional)</span>
+              <span data-i18n="contact.message.label">Tu Mensaje</span> <span class="text-on-surface/25 normal-case tracking-normal" data-i18n="contact.message.optional">(opcional)</span>
             </p>
             <textarea
               class="w-full bg-transparent border-b border-outline-variant pb-3 font-body-lg text-[16px] text-on-surface placeholder:text-on-surface/25 focus:border-primary outline-none transition-colors duration-200 resize-none"
               id="contact-message"
               name="message"
-              placeholder="Provide details regarding your project or inquiry..."
+              placeholder="Proporciona detalles sobre tu proyecto o consulta..."
+              data-i18n-placeholder="contact.message.placeholder"
               rows="4"
             ></textarea>
           </div>
@@ -203,7 +205,7 @@
               id="contact-submit"
               type="submit"
             >
-              <span>Submit</span>
+              <span data-i18n="contact.submit">Enviar</span>
               <span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
             </button>
           </div>
