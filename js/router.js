@@ -22,7 +22,7 @@ const routes = {
     '/projects': { view: 'views/projects.html',  module: null,                  title: 'CTL - Proyectos' },
     '/proyectos': { view: 'views/proyectos.html', module: './views/proyectos.js', title: 'CTL - Proyectos Emblemáticos' },
     '/compliance': { view: 'views/compliance.html', module: './views/compliance.js', title: 'CTL - Compliance' },
-    '/contact':  { view: 'views/contact.html',   module: null,                  title: 'CTL - Contacto' },
+    '/contact':  { view: 'views/contact.html',   module: './views/contact.js',  title: 'CTL - Contacto' },
 };
 
 const NOT_FOUND = { view: 'views/not-found.html', module: null, title: 'CTL - 404' };
@@ -109,6 +109,11 @@ async function render(path) {
 
         outlet.innerHTML = markup;
 
+        // El markup de las vistas está en español (fuente de verdad): se
+        // re-traduce en cada render. Va antes de mod.init() para que los
+        // listeners de la vista se enganchen al DOM ya definitivo.
+        applyLang(appState.lang);
+
         // innerHTML no ejecuta <script>: la lógica llega como módulo ES6.
         if (route.module) {
             const mod = await import(route.module);
@@ -121,7 +126,6 @@ async function render(path) {
         appState.currentPath = path;
         setActiveNav(path);
         syncHeroSlider(path);
-        applyLang(appState.lang);
 
         // El salto de ruta debe ser instantáneo: se desactiva momentáneamente el
         // "scroll-behavior: smooth" global (CSS) para que no lo anime. La
@@ -173,7 +177,7 @@ function initShell() {
         }, { passive: true });
     }
 
-    // Toggle de idioma (estado global persistente): traduce nav + footer.
+    // Toggle de idioma (estado global persistente): traduce toda la página.
     const langToggle = document.getElementById('langToggle');
     applyLang(appState.lang);
     if (langToggle) {
