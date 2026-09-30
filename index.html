@@ -174,9 +174,9 @@
 
     /* Globo del home: mitad superior anclada abajo. Medidas fijas (sin aspect-ratio ni % de margen) para que Safari iOS lo recorte igual */
     .hero-globe {
-        --gw: 150vw;
+        --gw: 170vw;
         position: absolute; left: 50%; bottom: 0;
-        width: var(--gw); height: calc(var(--gw) * 0.5);
+        width: var(--gw); height: calc(var(--gw) * 0.645);
         transform: translateX(-50%);
         overflow: hidden; pointer-events: none;
     }
@@ -189,7 +189,7 @@
         filter: hue-rotate(200deg) saturate(1.8);
     }
     @media (min-width: 768px) {
-        .hero-globe { --gw: min(1100px, 130vw); bottom: -70px; height: calc(var(--gw) * 0.645); }
+        .hero-globe { --gw: min(1100px, 130vw); bottom: -70px; }
     }
 
     /* Hero Slider: track deslizable (drag/swipe) */
